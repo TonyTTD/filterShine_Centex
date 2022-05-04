@@ -1,0 +1,28 @@
+.backlog {
+  position: relative;
+  bottom: 0px;
+  max-height: 600px;
+  overflow-y: hidden;
+}
+
+.backlog:hover {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.service-request {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  width: 700px;
+  display: flex;
+  flex-direction: row;
+  max-width: 700px;
+  max-height: 100px;
+}
+
+.service-request-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+}

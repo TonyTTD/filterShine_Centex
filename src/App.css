@@ -1,6 +1,55 @@
-.App {
-  text-align: center;
+#root {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
+
+.App {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 1500px;
+  margin: 50px;
+}
+
+.comp-container {
+  float: left;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+  /* align-items: center; */
+  margin-top: 10%;
+  width: 1250px;
+}
+
+.nav-bar {
+  display: inline-flex;
+  flex-direction: row;
+  background-color: #a4bef0;
+  width: 1250px;
+  padding: 20px;
+}
+
+.logo {
+  float: left;
+  margin-right: 15%;
+}
+
+.add-Service-tab {
+  border: 1px solid black;
+  padding: 7px;
+  max-height: 25px;
+  max-width: 75px;
+  font-size: small;
+}
+
+
 
 .App-logo {
   height: 40vmin;
