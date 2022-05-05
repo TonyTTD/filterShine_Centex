@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 // import { useRecoilState } from 'recoil';
 // import { requestModal } from './atom_selector/recoil.js';
-import logo from './filtershine.png';
+import logo from './filtershine.webp';
 
 //trying this lazy to reduce the loading time on a webpage load
 const Backlog = React.lazy(() => import('./components/backlog.jsx'));

@@ -114,6 +114,10 @@ export const serviceRequestSelector = selector({
           return true;
         }
 
+        if (convertedDate >= selectDate[0] && convertedDate <= selectDate[1]) {
+          return true;
+        }
+
         if (convertedDate < selectDate[0]) {
           for (let i = 0; i < 1000; i++) {
             currentDate.setDate(currentDate.getDate() + date.cycle);
