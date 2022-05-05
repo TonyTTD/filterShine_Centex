@@ -1,5 +1,10 @@
 .calendar {
-  margin-right: 5%;
+  margin-right: 0%;
   position: relative;
   bottom: 0px;
+  width: 220px;
+  border: 1px solid black;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,8 +1,12 @@
 .backlog {
   position: relative;
   bottom: 0px;
-  max-height: 600px;
-  overflow-y: hidden;
+  max-height: 1000px;
+  overflow: hidden;
+  margin-left: 5%;
+  margin-right: 5%;
+  align-items: center;
+  justify-content: center;
 }
 
 .backlog:hover {
@@ -10,19 +14,38 @@
   overflow-x: hidden;
 }
 
+.service-request-container {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  margin-right: 0px;
+  padding: 5px;
+  max-height: 50px;
+}
+
 .service-request {
   margin: 10px;
   padding: 10px;
   border: 1px solid black;
-  width: 700px;
+  border-radius: 10px;
+  width: 650px;
   display: flex;
   flex-direction: row;
   max-width: 700px;
   max-height: 100px;
 }
 
+.service-request:hover {
+  background-color: rgb(245,245,245);
+}
+
+/* .service-request:hover + .service-request-desc {
+  overflow:visible;
+} */
+
 .service-request-desc {
   display: flex;
   flex-direction: column;
-  justify-content: baseline;
+  position: relative;
+  overflow: hidden;
 }

@@ -24,14 +24,13 @@
   text-align: center;
   justify-content: center;
   /* align-items: center; */
-  margin-top: 10%;
+  margin-top: 5%;
   width: 1250px;
 }
 
 .nav-bar {
   display: inline-flex;
   flex-direction: row;
-  background-color: #a4bef0;
   width: 1250px;
   padding: 20px;
 }

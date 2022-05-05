@@ -1,32 +1,49 @@
 import React from 'react';
 import moment from 'moment';
 import { useRecoilState } from 'recoil';
-import { selectedDate } from '../atom_selector/recoil.js';
+import { selectedDate, enableDateRange } from '../atom_selector/recoil.js';
 import './comp-styling/calendar.css';
 
 var Calendar = () => {
 
   // const weekdayshort = moment.weekdaysShort();
   let [selectDate, setSelectedDate] = useRecoilState(selectedDate);
+  let [isDateRange, setEnableRange] = useRecoilState(enableDateRange);
 
   const onDateSelect = (e) => {
-    let x = document.getElementById("calendar-select").value;
-    setSelectedDate(moment(x).format('MM-DD-YYYY'));
+    let fromDate = document.getElementById("calendar-select-from").value || selectDate[0];
+    let toDate = document.getElementById("calendar-select-to").value;
+    // console.log('date',fromDate === "", 'to', toDate);
+    !isDateRange ? setSelectedDate([moment(fromDate).format('MM-DD-YYYY'), ""]) : setSelectedDate([moment(fromDate).format('MM-DD-YYYY'), moment(toDate).format('MM-DD-YYYY')])
+  };
+
+  const defaultDateRange = () => {
+    if (!selectDate[1]) {
+      return `Today is: ${selectDate[0]}`;
+    } else {
+      return `${selectDate[0]} to ${selectDate[1]}`;
+    }
+  };
+
+  const enableToDate = (e) => {
+    let toDateAttribute = document.getElementById("calendar-select-to")
+    if (toDateAttribute.hasAttribute('hidden')) {
+      toDateAttribute.removeAttribute('hidden');
+      setEnableRange(true);
+    } else {
+      toDateAttribute.setAttribute('hidden', !isDateRange);
+      setEnableRange(false);
+    }
   };
 
   return (
-    <div>On: {selectDate} <br></br>
-      <input id="calendar-select" type="date"></input>
+    <div>{defaultDateRange()} <br></br>
+      <input id="calendar-select-from" type="date"></input>
+      {/* <input className="from-date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input> */}
+      <input id="calendar-select-to" type="date" hidden></input><br></br>
       <input className="date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input>
+      <input type="checkbox" value="Range-enabled" onClick={(e) => enableToDate(e)}></input>Enable Range
     </div>
-    // weekdayshort.map(day => {
-    //   return (
-    //     // <th key={day} className="week-day">
-    //     //   {day}
-    //     // </th>
-
-    //   )
-    // })
   );
 };
 

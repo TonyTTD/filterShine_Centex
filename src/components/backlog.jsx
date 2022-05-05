@@ -7,7 +7,11 @@ import moment from 'moment';
 
 var Backlog = () => {
 
- let backLog = useRecoilValue(serviceRequestSelector);
+  let backLog = useRecoilValue(serviceRequestSelector);
+
+  const onServiceEdit = (e) => {
+    console.log(e);
+  }
 
   return (
     <div className="backlog">
@@ -16,21 +20,21 @@ var Backlog = () => {
       </div>
       {backLog.filterLog.map((service, i) => {
         return (
-          <>
-            <div key={i} className="service-request">
+          <div key={i} className="service-request-container" onClick={(event) => {onServiceEdit(event)}}>
+            <div className="service-request">
               <span className="service-id">SI: {service.service_id}</span>
               <span className="service-location">Company: {service.company}</span>
               <span className="service-poc">POC: {service.poc}</span>
               <span className="service-phone">Phone#: {service.phone_number}</span>
             </div>
-            <div className="service-request-desc">
+            {/* <div className="service-request-desc">
               <span>{service.company}</span>
               <span>{service.company}</span>
-            </div>
-            <span>
+              <span>
               <button className="service-request-edit">Edit</button>
             </span>
-          </>
+            </div> */}
+          </div>
         )
       })}
     </div>

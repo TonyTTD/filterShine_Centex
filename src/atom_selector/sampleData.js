@@ -13,9 +13,9 @@ const sample = [
       { 14: {type: 'SA16x16', installed: 6, price: '$31.78'},
         15: {type: 'SA16x20', installed: 5, price: '$41.10'}
       },
-    cycle: 14,
+    cycle: 7,
     createdAt: '12/07/21',
-    serviceOn: '12/14/21'
+    serviceOn: '05/11/22'
   },
   {
     service_id: 2,
@@ -31,9 +31,9 @@ const sample = [
       { 16: {type: 'SA16x25', installed: 6, price: '$73.58'},
         18: {type: 'SA20x20', installed: 4, price: '$41.91'}
       },
-    cycle: 28,
+    cycle: 7,
     createdAt: '12/14/21',
-    serviceOn: '12/14/21'
+    serviceOn: '05/11/22'
   },
   {
     service_id: 3,
