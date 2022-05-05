@@ -22,12 +22,14 @@ var App = () => {
       <div className="logo">
         <img className="logo-image" src={logo} alt="FilterShine" width="275px" height="75px"></img>
       </div>
+      <input className="search-tab" type="search" placeholder="Search by client" onClick={addServiceTab}></input>
       <div className="nav-bar">
         <div id="tabs" className="home-tab" onClick={addServiceTab}>Home</div>
         <div id="tabs" className="add-Service-tab" onClick={addServiceTab}>Add Service</div>
         <div id="tabs" className="inventory-tab" onClick={addServiceTab}>Inventory</div>
         <div id="tabs" className="pricing-tab" onClick={addServiceTab}>Pricing</div>
         <div id="tabs" className="home-tab" onClick={addServiceTab}>Contacts</div>
+        <div id="tabs" className="about-tab" onClick={addServiceTab}>About Us</div>
       </div>
       <div className="comp-container">
         <div className="calendar">
