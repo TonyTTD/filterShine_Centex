@@ -49,8 +49,8 @@
   max-height: 25px;
   width: 100px;
   font-size: small;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
+  border-left: 1px solid rgb(169,169,169);
+  border-right: 1px solid rgb(169,169,169);
 }
 
 

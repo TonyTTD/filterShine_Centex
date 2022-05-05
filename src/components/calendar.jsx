@@ -42,7 +42,7 @@ var Calendar = () => {
       <input id="calendar-select-from" type="date"></input>
       {/* <input className="from-date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input> */}
       <input id="calendar-select-to" type="date" hidden></input><br></br>
-      <input className="date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input>
+      <button className="date-select" onClick={(event) => {onDateSelect(event)}}>Search</button>
     </div>
     <input type="checkbox" value="Range-enabled" onClick={(e) => enableToDate(e)}></input>
     <span>Enable Range</span>

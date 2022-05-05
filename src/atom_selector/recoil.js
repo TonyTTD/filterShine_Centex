@@ -20,6 +20,31 @@ export const requestModal = atom({
   default: false
 });
 
+export const selectedService = atom({
+  key: 'selectedService',
+  default: {
+    service_id: null,
+    client_id: null,
+    company: '',
+    poc: '',
+    phone_number: '',
+    poc_number: '',
+    email: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: 76355,
+    filter_id:
+      { 0: {type: '', installed: null, price: ''},
+        100: {type: '', installed: null, price: ''}
+      },
+    cycle: null,
+    createdAt: '',
+    serviceOn: '',
+    route: '',
+    title: ''}
+});
+
 //---- Stores the picked date
 export const selectedDate = atom({
   key: 'selectedDate',
@@ -30,6 +55,17 @@ export const enableDateRange = atom({
   key :'enableDateRange',
   default: false
 });
+
+export const selectedServiceSelector = selector({
+  key: 'selectedServiceSelector',
+  get: ({get}) => {
+    let serviceLog = get(selectedService);
+
+    let filtersUsed = Object.values(serviceLog.filter_id);
+
+    return filtersUsed;
+  }
+})
 
 export const serviceRequestSelector = selector({
   key: 'serviceRequestSelector',
@@ -97,7 +133,7 @@ export const serviceRequestSelector = selector({
     console.log('filtered range', filterLog);
 
     if (filterLog.length === 0) {
-      filterLog = log;
+      filterLog = [];
       let filterArray = {};
       filterLog.forEach(filter => {
         for (let type in filter.filter_id) {

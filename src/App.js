@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { requestModal } from './atom_selector/recoil.js';
+// import { useRecoilState } from 'recoil';
+// import { requestModal } from './atom_selector/recoil.js';
 import logo from './filtershine.png';
 
 //trying this lazy to reduce the loading time on a webpage load
@@ -12,11 +12,9 @@ const InventoryCount = React.lazy(() => import('./components/inventoryCount.jsx'
 // const RequestFormModal = React.lazy(() => import('./components/modal/requestFormModal.js'));
 
 var App = () => {
-  let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
 
   const addServiceTab = () => {
     console.log('service tab clicked')
-    setRequestModal(true);
   };
 
   return (
