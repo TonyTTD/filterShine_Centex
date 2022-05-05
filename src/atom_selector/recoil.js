@@ -38,10 +38,6 @@ export const serviceRequestSelector = selector({
     let selectDate = get(selectedDate);
     let enabledRange = get(enableDateRange);
 
-    let test = new Date(log[0].serviceOn)
-    console.log(test.setDate(test.getDate() + 2))
-    console.log(test.toDateString())
-
     let filterLog;
     // Filters based on a specific day
     if (!enabledRange) {
@@ -49,7 +45,9 @@ export const serviceRequestSelector = selector({
         let currentDate = new Date(date.serviceOn);
         let convertedDate = moment(currentDate).format('MM-DD-YYYY');
 
-        console.log('-', convertedDate, selectDate[0]);
+        if (convertedDate === selectDate[0]) {
+          return true;
+        }
 
         if (convertedDate < selectDate[0]) {
           for (let i = 0; i < 1000; i++) {
@@ -57,10 +55,8 @@ export const serviceRequestSelector = selector({
             let temp = moment(currentDate).format('MM-DD-YYYY');
             //checks if the next cycle date is greater than the min range
             if (temp <= selectDate[0]) {
-              console.log('----', currentDate.toDateString(), selectDate[0]);
               //checks if its less than the max range
               if (temp === selectDate[0]) {
-                console.log('final', currentDate.toDateString(), selectDate[1])
                 return true;
               }
 
@@ -78,19 +74,18 @@ export const serviceRequestSelector = selector({
         let currentDate = new Date(date.serviceOn);
         let convertedDate = moment(currentDate).format('MM-DD-YYYY');
 
-        console.log('-', convertedDate, selectDate[0]);
+        if (convertedDate === selectDate[0] || convertedDate === selectDate[1]) {
+          return true;
+        }
 
         if (convertedDate < selectDate[0]) {
           for (let i = 0; i < 1000; i++) {
             currentDate.setDate(currentDate.getDate() + date.cycle);
             let temp = moment(currentDate).format('MM-DD-YYYY');
-            console.log('---', currentDate.toDateString(), selectDate[0])
             //checks if the next cycle date is greater than the min range
             if (temp >= selectDate[0]) {
-              console.log('----', currentDate.toDateString(), selectDate[0]);
               //checks if its less than the max range
               if (temp <= selectDate[1]) {
-                console.log('final', currentDate.toDateString(), selectDate[1])
                 return true;
               }
               return false;
@@ -100,11 +95,6 @@ export const serviceRequestSelector = selector({
       })
     }
     console.log('filtered range', filterLog);
-    // console.log(filterLog);
-    // let x = moment('2022-05-03').format('YYYY-MM-DD')
-    // console.log(x);
-    // console.log(moment(new Date() - new Date(x)).format('DD'))
-    // console.log(new Date(x) === new Date()) //use this for comparison range
 
     if (filterLog.length === 0) {
       filterLog = log;
@@ -146,15 +136,5 @@ export const serviceRequestSelector = selector({
 
       return {filterLog, totalType, totalCount};
     }
-  }
-});
-
-export const inventorySelector = selector({
-  key: 'inventorySelector',
-  get: ({get}) => {
-    let log = get(backlogList);
-    let filterId = Object.keys(log.filter_id);
-    let total = Object.values(log.filter_id);
-    return {filterId, total};
   }
 });

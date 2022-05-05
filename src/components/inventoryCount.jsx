@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { inventorySelector, serviceRequestSelector } from '../atom_selector/recoil.js';
+import { serviceRequestSelector } from '../atom_selector/recoil.js';
 import './comp-styling/inventoryCount.css';
 
 var InventoryCount = () => {
@@ -9,13 +9,13 @@ var InventoryCount = () => {
   // let currentInventory = useRecoilValue(serviceRequestSelector);
 
   return (
-    <div className="inventory-container">Total Filters
+    <div className="inventory-container"><span className="title-filter">Total Filters</span>
       {currentInventory.totalType.map((filter, i) => {
         let filterTotal = currentInventory.totalCount[i];
         return (
         <div key ={i} className="inventory-count">
           {/* <span className="filter-id">{filter}</span> */}
-          <span className="filter-type">{filter}</span>
+          <span className="filter-type">{filter}:</span>
           <span className="filter-total">{filterTotal}</span>
         </div>
         );

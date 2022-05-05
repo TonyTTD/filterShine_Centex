@@ -21,23 +21,22 @@ var App = () => {
 
   return (
     <div className="App">
-
-      <div className="nav-bar">
-        <div className="logo">
-          <img className="logo-image" src={logo} alt="FilterShine" width="275px" height="75px">
-          </img>
-        </div>
-        <div className="add-Service-tab" onClick={addServiceTab}>Add Service</div>
+      <div className="logo">
+        <img className="logo-image" src={logo} alt="FilterShine" width="275px" height="75px"></img>
       </div>
-
+      <div className="nav-bar">
+        <div id="tabs" className="home-tab" onClick={addServiceTab}>Home</div>
+        <div id="tabs" className="add-Service-tab" onClick={addServiceTab}>Add Service</div>
+        <div id="tabs" className="inventory-tab" onClick={addServiceTab}>Inventory</div>
+        <div id="tabs" className="pricing-tab" onClick={addServiceTab}>Pricing</div>
+        <div id="tabs" className="home-tab" onClick={addServiceTab}>Contacts</div>
+      </div>
       <div className="comp-container">
         <div className="calendar">
           <h2>At a Glance</h2>
           <Calendar/>
         </div>
-
         <Backlog/>
-
         <InventoryCount/>
       </div>
   </div>

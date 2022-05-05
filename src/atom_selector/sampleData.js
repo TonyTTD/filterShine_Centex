@@ -52,6 +52,42 @@ const sample = [
     cycle: 14,
     createdAt: '05/03/22',
     serviceOn: '05/10/22'
+  },
+  {
+    service_id: 4,
+    client_id: 4,
+    company: 'hello',
+    poc: 'guy123',
+    phone_number: '(706)234-5434',
+    email: 'elonMusk@blahoo.com',
+    address: '1221 tony st',
+    city: 'dallas',
+    state: 'texas',
+    filter_id:
+      { 6: {type: '16x16', installed: 81, price: '$11.20'},
+        7: {type: '16x20', installed: 83, price: '$16.16'}
+      },
+    cycle: 14,
+    createdAt: '05/03/22',
+    serviceOn: '06/10/22'
+  },
+  {
+    service_id: 5,
+    client_id: 5,
+    company: 'BLAHH',
+    poc: 'girl123',
+    phone_number: '(706)234-5434',
+    email: 'Musk@blahoo.com',
+    address: '2222 tony st',
+    city: 'dallas',
+    state: 'texas',
+    filter_id:
+      { 16: {type: 'SA16x25', installed: 6, price: '$73.58'},
+        18: {type: 'SA20x20', installed: 4, price: '$41.91'}
+      },
+    cycle: 28,
+    createdAt: '05/03/22',
+    serviceOn: '06/17/22'
   }
 ];
 

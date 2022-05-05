@@ -1,12 +1,17 @@
 .backlog {
   position: relative;
   bottom: 0px;
-  max-height: 1000px;
+  max-height: 1200px;
   overflow: hidden;
   margin-left: 5%;
   margin-right: 5%;
   align-items: center;
   justify-content: center;
+}
+
+.backlog-title {
+  font-weight: bold;
+  font-size: x-large;
 }
 
 .backlog:hover {
@@ -41,6 +46,8 @@
 
 /* .service-request:hover + .service-request-desc {
   overflow:visible;
+  background-color: azure;
+  z-index: -1;
 } */
 
 .service-request-desc {
@@ -48,4 +55,31 @@
   flex-direction: column;
   position: relative;
   overflow: hidden;
+}
+
+/* service-request-container */
+.service-day {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.service-id {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.service-location {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.service-poc {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.service-phone {
+  margin-left: 5px;
+  margin-right: 5px;
 }

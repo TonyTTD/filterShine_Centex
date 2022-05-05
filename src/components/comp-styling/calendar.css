@@ -3,8 +3,28 @@
   position: relative;
   bottom: 0px;
   width: 220px;
+  height: 250px;
   border: 1px solid black;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
+}
+
+.calendar-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#calendar-select-from {
+  margin: 10px;
+}
+
+#calendar-select-to {
+  margin: 10px;
+}
+
+.date-select {
+  width: 150px;
 }

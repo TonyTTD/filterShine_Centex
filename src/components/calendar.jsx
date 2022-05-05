@@ -37,13 +37,16 @@ var Calendar = () => {
   };
 
   return (
-    <div>{defaultDateRange()} <br></br>
+    <>
+    <div className="calendar-container">{defaultDateRange()} <br></br>
       <input id="calendar-select-from" type="date"></input>
       {/* <input className="from-date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input> */}
       <input id="calendar-select-to" type="date" hidden></input><br></br>
       <input className="date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input>
-      <input type="checkbox" value="Range-enabled" onClick={(e) => enableToDate(e)}></input>Enable Range
     </div>
+    <input type="checkbox" value="Range-enabled" onClick={(e) => enableToDate(e)}></input>
+    <span>Enable Range</span>
+    </>
   );
 };
 

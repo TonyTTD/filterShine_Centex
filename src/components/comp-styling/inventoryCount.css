@@ -12,7 +12,16 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+  width: 150px;
+  left: 40px;
+}
+
+.title-filter {
+  margin-bottom: 10px;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+  font-size: large;
 }
 
 .filter-id {
@@ -25,7 +34,7 @@
 
 .filter-type {
   margin: 10px;
-  align-items: center;
+  align-items: left;
   justify-content: right;
 }
 
@@ -33,4 +42,5 @@
   margin: 10px;
   align-items: left;
   justify-content: right;
+  font-weight: bold;
 }

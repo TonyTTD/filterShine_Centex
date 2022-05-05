@@ -15,6 +15,7 @@
   align-items: center;
   width: 1500px;
   margin: 50px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .comp-container {
@@ -32,22 +33,25 @@
   display: inline-flex;
   flex-direction: row;
   width: 1250px;
-  padding: 20px;
+  padding: 10px;
+  border-bottom: 1px solid black;
+  justify-content: center;
 }
 
 .logo {
   float: left;
-  margin-right: 15%;
+  margin-right: 65%;
 }
 
-.add-Service-tab {
-  border: 1px solid black;
+/* .add-Service-tab { */
+#tabs {
   padding: 7px;
   max-height: 25px;
-  max-width: 75px;
+  width: 100px;
   font-size: small;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
-
 
 
 .App-logo {
