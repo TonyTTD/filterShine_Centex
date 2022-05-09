@@ -2,6 +2,7 @@ import { atom, selector, useRecoilState } from 'recoil';
 import sample from './sampleData.js';
 import filterCount from './sampleFilterCount.js';
 import moment from 'moment';
+import axios from 'axios';
 
 // ---- Display the existing service requests
 export const backlogList = atom({
@@ -40,7 +41,7 @@ export const selectedService = atom({
       },
     cycle: null,
     createdAt: '',
-    serviceOn: '',
+    serviceon: '',
     route: '',
     title: ''}
 });
@@ -55,6 +56,27 @@ export const enableDateRange = atom({
   key :'enableDateRange',
   default: false
 });
+
+export const serviceLogSelector = selector({
+    key: 'serviceLogSelector',
+    get: async ({get}) => {
+      const res = await axios.get('/filtershine/api/client');
+      console.log(res);
+    }
+});
+// export const serviceLogSelector = selector({
+//   key: 'serviceLogSelector',
+//   get: async ({get}) => {
+//     let fromDate = moment(get(selectedDate)[0]).format('YYYY-MM-DD');
+//     let toDate = moment(get(selectedDate)[1]).format('YYYY-MM-DD');
+//     if (!toDate) {
+//       console.log(fromDate, toDate);
+//       const res = await axios.get(`/filtershine/api/client?from=${fromDate}&to=${toDate}`);
+//       // console.log(res);
+//     }
+
+//   }
+// })
 
 export const selectedServiceSelector = selector({
   key: 'selectedServiceSelector',
@@ -71,6 +93,7 @@ export const serviceRequestSelector = selector({
   key: 'serviceRequestSelector',
   get: ({get}) => {
     let log = get(backlogList);
+
     let selectDate = get(selectedDate);
     let enabledRange = get(enableDateRange);
 
@@ -78,7 +101,7 @@ export const serviceRequestSelector = selector({
     // Filters based on a specific day
     if (!enabledRange) {
       filterLog = log.filter(date => {
-        let currentDate = new Date(date.serviceOn);
+        let currentDate = new Date(date.serviceon);
         let convertedDate = moment(currentDate).format('MM-DD-YYYY');
 
         if (convertedDate === selectDate[0]) {
@@ -107,7 +130,7 @@ export const serviceRequestSelector = selector({
       })
     } else {
       filterLog = log.filter(date => {
-        let currentDate = new Date(date.serviceOn);
+        let currentDate = new Date(date.serviceon);
         let convertedDate = moment(currentDate).format('MM-DD-YYYY');
 
         if (convertedDate === selectDate[0] || convertedDate === selectDate[1]) {

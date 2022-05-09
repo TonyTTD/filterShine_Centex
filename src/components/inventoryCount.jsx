@@ -25,17 +25,3 @@ var InventoryCount = () => {
 };
 
 export default InventoryCount;
-
-// address: "69 sesame st"
-// city: "houston"
-// client_id: 1
-// company: "bigRich"
-// createdAt: "12/07/21"
-// cycle: 14
-// email: "money@blahoo.com"
-// filter_id: {14: {…}, 15: {…}}
-// phone_number: "(123)234-5434"
-// poc: "poorGuy123"
-// serviceOn: "12/14/21"
-// service_id: 1
-// state: "texas"

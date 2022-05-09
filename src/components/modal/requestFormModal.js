@@ -25,16 +25,16 @@ var RequestFormModal = () => {
               <div className="modal-company-info">
                 <div className="modal-company">{selectedLog.company}</div>
                 <div className="modal-address">{selectedLog.address}</div>
-                <div className="modal-city-st-zip">{selectedLog.city}, {selectedLog.state}, {selectedLog.zip}</div>
+                <div className="modal-city-st-zip">{selectedLog.city}, {selectedLog.st}, {selectedLog.zip}</div>
                 <div className="modal-phone-num">{selectedLog.phone_number}</div>
-                <div className="modal-poc">{selectedLog.title}: {selectedLog.poc}</div>
+                <div className="modal-poc">{selectedLog.title}: {selectedLog.contact}</div>
                 <div className="modal-poc-num">{selectedLog.poc_number}</div>
                 <div className="modal-email">{selectedLog.email}</div>
               </div>
               <div className="modal-edits"><h3>Update Cycle</h3>
-                <label>Every {moment(selectedLog.serviceOn).format('dddd')}</label>
+                <label>Every {moment(selectedLog.serviceon).format('dddd')}</label>
                 <label>Service Started On:</label>
-                  <input type="text" className="modal-weekday" placeholder={moment(selectedLog.serviceOn).format('MM-DD-YYYY')}></input>
+                  <input type="text" className="modal-weekday" placeholder={moment(selectedLog.serviceon).format('MM-DD-YYYY')}></input>
                 <label>Cycle:</label>
                   <input type="text" className="modal-route" placeholder={selectedLog.cycle}></input>
               </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { serviceRequestSelector, requestModal, selectedService } from '../atom_selector/recoil.js';
 import './comp-styling/backlog.css';
@@ -26,10 +26,10 @@ var Backlog = () => {
           return (
             <div key={i} className="service-request-container" onClick={(event) => {onServiceEdit(service)}}>
               <div className="service-request">
-                <span className="service-day">{moment(service.serviceOn).format('dddd')} |</span>
-                <span className="service-id">ID: {service.service_id}</span>
-                <span className="service-location">Company: {service.company}</span>
-                <span className="service-poc">POC: {service.poc}</span>
+                <span className="service-day">{moment(service.serviceon).format('dddd')}</span>
+                <span className="service-id">ID: {service.id}</span>
+                <span className="service-location">{service.company}</span>
+                <span className="service-poc">POC: {service.contact}</span>
                 <span className="service-phone">Phone#: {service.phone_number}</span>
               </div>
               {/* <div className="service-request-desc">
@@ -48,7 +48,7 @@ var Backlog = () => {
 
   return (
     <div className="backlog">
-      <div className="backlog-title">Service Logs</div>
+      
       <RequestFormModal/>
       {checkAvailability()}
     </div>

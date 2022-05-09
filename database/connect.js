@@ -12,6 +12,7 @@ module.exports.getClient = async () => {
 
   await pool.connect().catch(err => console.log(err));
   console.log('Connected to PSQL database...');
+
   return pool;
 };
 

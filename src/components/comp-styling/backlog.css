@@ -12,6 +12,8 @@
 .backlog-title {
   font-weight: bold;
   font-size: x-large;
+  position: absolute;
+  top: 250px;
 }
 
 .backlog:hover {
@@ -36,8 +38,8 @@
   width: 650px;
   display: flex;
   flex-direction: row;
-  max-width: 700px;
-  max-height: 100px;
+  max-width: 650px;
+  max-height: 200px;
 }
 
 .service-request:hover {

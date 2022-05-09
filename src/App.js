@@ -1,17 +1,28 @@
 // import logo from './logo.svg';
 import './App.css';
-import React from 'react';
-// import { useRecoilState } from 'recoil';
-// import { requestModal } from './atom_selector/recoil.js';
+import React, {useEffect} from 'react';
+import { useRecoilState } from 'recoil';
+import { backlogList } from './atom_selector/recoil.js';
 import logo from './filtershine.webp';
+import axios from 'axios';
 
 //trying this lazy to reduce the loading time on a webpage load
 const Backlog = React.lazy(() => import('./components/backlog.jsx'));
 const Calendar = React.lazy(() => import('./components/calendar.jsx'));
 const InventoryCount = React.lazy(() => import('./components/inventoryCount.jsx'));
-// const RequestFormModal = React.lazy(() => import('./components/modal/requestFormModal.js'));
 
 var App = () => {
+
+  let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
+
+  useEffect(() => {
+    const res = axios({
+      baseURL: 'http://localhost:4000',
+      url: '/filtershine/api/client',
+      method: 'get',
+      // responseType: 'json',
+    }).then(data => {setServiceLog(data.data)}).catch(err => {console.log(err)});
+  },[]);
 
   const addServiceTab = () => {
     console.log('service tab clicked')
@@ -36,6 +47,7 @@ var App = () => {
           <h2>At a Glance</h2>
           <Calendar/>
         </div>
+        <div className="backlog-title">Service Logs</div>
         <Backlog/>
         <InventoryCount/>
       </div>
