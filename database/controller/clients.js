@@ -1,7 +1,7 @@
 const { getClient } = require('../connect.js');
 
 module.exports = {
-  getClientsByDate: async (to, from) => {
+  getClientsDB: async (to, from) => {
     let pool = await getClient();
     let queryDB = `
     SELECT *

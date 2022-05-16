@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilState } from 'recoil';
+import { atom, selector } from 'recoil';
 import sample from './sampleData.js';
 import filterCount from './sampleFilterCount.js';
 import moment from 'moment';
@@ -87,7 +87,7 @@ export const selectedServiceSelector = selector({
 
     return filtersUsed;
   }
-})
+});
 
 export const serviceRequestSelector = selector({
   key: 'serviceRequestSelector',
@@ -101,28 +101,20 @@ export const serviceRequestSelector = selector({
     // Filters based on a specific day
     if (!enabledRange) {
       filterLog = log.filter(date => {
-        let currentDate = new Date(date.serviceon);
-        let convertedDate = moment(currentDate).format('MM-DD-YYYY');
-
-        if (convertedDate === selectDate[0]) {
+        var currentDate = moment(date.serviceon);
+        var selectedDateObj = moment(selectDate[0]);
+        if (currentDate.isSame(selectedDateObj)) {
           return true;
         }
 
-        if (convertedDate < selectDate[0]) {
+        if (currentDate.isBefore(selectedDateObj)) {
           for (let i = 0; i < 1000; i++) {
-            currentDate.setDate(currentDate.getDate() + date.cycle);
-            let temp = moment(currentDate).format('MM-DD-YYYY');
-            //checks if the next cycle date is greater than the min range
-            if (temp <= selectDate[0]) {
-              //checks if its less than the max range
-              if (temp === selectDate[0]) {
-                return true;
-              }
+            currentDate.add(date.cycle, 'days');
 
-              if (temp > selectDate[0]) {
-                return false;
-              }
-            } else {
+            if (currentDate.isSame(selectedDateObj)) {
+              return true;
+            }
+            if (currentDate.isAfter(selectedDateObj)) {
               return false;
             }
           }
@@ -130,25 +122,25 @@ export const serviceRequestSelector = selector({
       })
     } else {
       filterLog = log.filter(date => {
-        let currentDate = new Date(date.serviceon);
-        let convertedDate = moment(currentDate).format('MM-DD-YYYY');
+        var currentDate = moment(date.serviceon);
+        var selectedDateObjFrom = moment(selectDate[0]);
+        var selectedDateObjTo = moment(selectDate[1]);
 
-        if (convertedDate === selectDate[0] || convertedDate === selectDate[1]) {
+        if (currentDate.isSame(selectedDateObjFrom) || currentDate.isSame(selectedDateObjTo)) {
           return true;
         }
 
-        if (convertedDate >= selectDate[0] && convertedDate <= selectDate[1]) {
+        if (currentDate.isSameOrAfter(selectedDateObjFrom) && currentDate.isSameOrBefore(selectedDateObjTo)) {
           return true;
         }
 
-        if (convertedDate < selectDate[0]) {
+        if (currentDate.isBefore(selectedDateObjFrom)) {
           for (let i = 0; i < 1000; i++) {
-            currentDate.setDate(currentDate.getDate() + date.cycle);
-            let temp = moment(currentDate).format('MM-DD-YYYY');
-            //checks if the next cycle date is greater than the min range
-            if (temp >= selectDate[0]) {
+            currentDate.add(date.cycle, 'days');
+
+            if (currentDate.isSameOrAfter(selectedDateObjFrom)) {
               //checks if its less than the max range
-              if (temp <= selectDate[1]) {
+              if (currentDate.isSameOrBefore(selectedDateObjTo)) {
                 return true;
               }
               return false;

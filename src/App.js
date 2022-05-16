@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 import React, {useEffect} from 'react';
 import { useRecoilState } from 'recoil';
@@ -10,6 +9,7 @@ import axios from 'axios';
 const Backlog = React.lazy(() => import('./components/backlog.jsx'));
 const Calendar = React.lazy(() => import('./components/calendar.jsx'));
 const InventoryCount = React.lazy(() => import('./components/inventoryCount.jsx'));
+
 
 var App = () => {
 

@@ -28,7 +28,7 @@ var Backlog = () => {
               <div className="service-request">
                 <span className="service-day">{moment(service.serviceon).format('dddd')}</span>
                 <span className="service-id">ID: {service.id}</span>
-                <span className="service-location">{service.company}</span>
+                <span className="service-location">{service.location}</span>
                 <span className="service-poc">POC: {service.contact}</span>
                 <span className="service-phone">Phone#: {service.phone_number}</span>
               </div>
@@ -48,7 +48,7 @@ var Backlog = () => {
 
   return (
     <div className="backlog">
-      
+
       <RequestFormModal/>
       {checkAvailability()}
     </div>
