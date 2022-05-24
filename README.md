@@ -10,7 +10,7 @@
 ## SCRIPT COMMANDS
 1. ## RUN BUILD TOOLS
     $ npm start
-1. ## RUN IN DEV MODE WITH NODEMON
+2. ## RUN IN DEV MODE WITH NODEMON
     $ npm run server-dev
 
 ## ROUTES
