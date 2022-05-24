@@ -13,7 +13,6 @@ var InventoryCount = () => {
         let filterTotal = currentInventory.totalCount[i];
         return (
         <div key ={i} className="inventory-count">
-          {/* <span className="filter-id">{filter}</span> */}
           <span className="filter-type">{filter}:</span>
           <span className="filter-total">{filterTotal}</span>
         </div>
