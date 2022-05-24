@@ -12,7 +12,7 @@ var Calendar = () => {
   const onDateSelect = (e) => {
     let fromDate = document.getElementById("calendar-select-from").value || selectDate[0];
     let toDate = document.getElementById("calendar-select-to").value;
-    // console.log('date',fromDate === "", 'to', toDate);
+
     !isDateRange ? setSelectedDate([moment(fromDate).format('MM-DD-YYYY'), ""]) : setSelectedDate([moment(fromDate).format('MM-DD-YYYY'), moment(toDate).format('MM-DD-YYYY')]);
   };
 

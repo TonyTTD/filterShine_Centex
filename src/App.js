@@ -16,12 +16,14 @@ var App = () => {
   let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
 
   useEffect(() => {
+
     const res = axios({
       baseURL: 'http://localhost:4000',
       url: '/filtershine/api/client',
       method: 'get',
-      // responseType: 'json',
-    }).then(data => {setServiceLog(data.data)}).catch(err => {console.log(err)});
+    })
+    .then(data => {setServiceLog(data.data)})
+    .catch(err => {throw err});
   },[]);
 
   const addServiceTab = () => {

@@ -61,22 +61,8 @@ export const serviceLogSelector = selector({
     key: 'serviceLogSelector',
     get: async ({get}) => {
       const res = await axios.get('/filtershine/api/client');
-      console.log(res);
     }
 });
-// export const serviceLogSelector = selector({
-//   key: 'serviceLogSelector',
-//   get: async ({get}) => {
-//     let fromDate = moment(get(selectedDate)[0]).format('YYYY-MM-DD');
-//     let toDate = moment(get(selectedDate)[1]).format('YYYY-MM-DD');
-//     if (!toDate) {
-//       console.log(fromDate, toDate);
-//       const res = await axios.get(`/filtershine/api/client?from=${fromDate}&to=${toDate}`);
-//       // console.log(res);
-//     }
-
-//   }
-// })
 
 export const selectedServiceSelector = selector({
   key: 'selectedServiceSelector',
@@ -149,7 +135,6 @@ export const serviceRequestSelector = selector({
         }
       })
     }
-    console.log('filtered range', filterLog);
 
     if (filterLog.length === 0) {
       filterLog = [];

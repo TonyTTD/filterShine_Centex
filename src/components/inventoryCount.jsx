@@ -6,7 +6,6 @@ import './comp-styling/inventoryCount.css';
 var InventoryCount = () => {
 
   let currentInventory = useRecoilValue(serviceRequestSelector);
-  // let currentInventory = useRecoilValue(serviceRequestSelector);
 
   return (
     <div className="inventory-container"><span className="title-filter">Total Filters</span>

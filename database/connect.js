@@ -1,11 +1,12 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 module.exports.getClient = async () => {
   const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     port: 5432,
-    password: '123',
+    password: POSTGRESQLPWD,
     database: 'filtershine',
     ssl: false
   });
