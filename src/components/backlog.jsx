@@ -19,34 +19,8 @@ var Backlog = () => {
         break;
       }
     }
-    // setSelectedService(e);
     setRequestModal(true);
   }
-
-  // const checkAvailability = () => {
-  //   if (backLog.filterLog.length === 0) {
-  //     return (
-  //       <div className="service-request-container">No Available Services Are Required on Specified Date</div>
-  //     )
-  //   } else {
-  //     return (
-  //       backLog.filterLog.map((service, i) => {
-  //         return (
-  //           <div key={i} className="service-request-container" onClick={() => {onServiceEdit(service)}}>
-  //             <div className="service-request">
-  //               <span className="service-day">{moment(service.serviceon).format('dddd')}</span>
-  //               <span className="service-id">ID: {service.id}</span>
-  //               <span className="service-location">{service.location}</span>
-  //               <span className="service-poc">POC: {service.contact}</span>
-  //               <span className="service-phone">Phone#: {service.phone_number}</span>
-  //             </div>
-  //           </div>
-  //         )
-  //       })
-  //     )
-  //   }
-  // }
-
 
   const columns = [
     {
@@ -55,9 +29,9 @@ var Backlog = () => {
       width: 70 },
     {
       field: 'serviceon',
-      headerName: 'Service Date',
+      headerName: 'Service Day / Start',
       width: 175,
-      valueGetter: (param) => `${moment(param.row.serviceon).format('dddd')} ${moment(param.row.serviceon).format('MM-DD-YY')}` },
+      valueGetter: (param) => `${moment(param.row.serviceon).format('dddd')} / ${moment(param.row.serviceon).format('MM-DD-YY')}` },
     {
       field: 'location',
       headerName: 'Location',
@@ -87,8 +61,8 @@ var Backlog = () => {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
           // checkboxSelection
           className={'service-request-container'}
           onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
@@ -98,7 +72,6 @@ var Backlog = () => {
         />
       </div>
       <RequestFormModal/>
-      {/* {checkAvailability()} */}
     </div>
   );
 };
