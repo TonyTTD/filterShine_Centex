@@ -1,5 +1,6 @@
 const { getClient } = require('../connect.js');
 
+// Controller functions that affect the clients table
 module.exports = {
   getClientsDB: async (to, from) => {
     let pool = await getClient();
@@ -19,11 +20,16 @@ module.exports = {
       GROUP BY filters.client_id
     ) AS serviceLog
     ON clients.id = serviceLog.client_id`;
-    // let queryDB = `SELECT * from clients WHERE clients.serviceOn >= '${to}' AND clients.serviceOn <= '${from}'`;
+
     let clients = await pool.query(queryDB);
     // console.log(clients.rows);
     // await pool.end();
     return clients.rows;
+  },
+  addClient: async () => {
+    let pool = await getClient();
+    // let queryDB = `INSERT INTO clients;`; //Update this section when we have defined a client-side API route
+
   },
 
 };

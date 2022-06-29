@@ -6,7 +6,7 @@ module.exports.getClient = async () => {
     user: 'postgres',
     host: 'localhost',
     port: 5432,
-    password: POSTGRESQLPWD,
+    password: process.env.POSTGRESQLPWD,
     database: 'filtershine',
     ssl: false
   });

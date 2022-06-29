@@ -7,7 +7,7 @@ import axios from 'axios';
 // ---- Display the existing service requests
 export const backlogList = atom({
   key: 'backlogList',
-  default: sample,
+  default: [],
 });
 
 // ---- Display the current inventory
@@ -57,10 +57,16 @@ export const enableDateRange = atom({
   default: false
 });
 
+export const searchBarFilterByClient = atom({
+  key: 'searchBarFilterByClient',
+  default: ''
+});
+
 export const serviceLogSelector = selector({
     key: 'serviceLogSelector',
     get: async ({get}) => {
       const res = await axios.get('/filtershine/api/client');
+      return res;
     }
 });
 
@@ -72,6 +78,19 @@ export const selectedServiceSelector = selector({
     let filtersUsed = Object.values(serviceLog.filter_id);
 
     return filtersUsed;
+  }
+});
+
+export const searchBarFilter = selector({
+  key: 'searchBarFilter',
+  get: ({get}) => {
+    let backLog = get(backlogList);
+    let searched = get(searchBarFilterByClient);
+
+    //search through array of objects
+    let filteredSearch = backLog.filter(client => client.company === searched);
+    console.log(filteredSearch);
+    return filteredSearch;
   }
 });
 

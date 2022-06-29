@@ -1,0 +1,12 @@
+.addService-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* grid-area: 1 / 1 / 10 / 2; */
+}
+
+.service-input {
+
+}
