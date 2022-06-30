@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 import { requestModal, selectedFilter, getAllFilterInfo } from '../atom_selector/recoil.js';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';

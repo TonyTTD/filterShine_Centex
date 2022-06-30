@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { serviceRequestSelector, requestModal, selectedService } from '../atom_selector/recoil.js';
 import './comp-styling/backlog.css';
@@ -64,7 +64,6 @@ var Backlog = () => {
           columns={columns}
           pageSize={10}
           rowsPerPageOptions={[10]}
-          // checkboxSelection
           className={'service-request-container'}
           onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
             event.defaultMuiPrevent = true;

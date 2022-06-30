@@ -5,25 +5,49 @@ const { getClient } = require('../connect.js');
 module.exports = {
   getAllFilters: async () => {
     // query the DB to grab all filter info
-    let pool = await getClient();
-    let queryDB = `
-    Select filters.id, filters.type, filters.stock, SUM(filters_installed.installed) AS installed
-    FROM filters
-    JOIN filters_installed
-    ON filters_installed.filter_id = filters.id
-    GROUP BY filters.id;`;
-
-    let filters = await pool.query(queryDB);
-
-    return filters.rows;
+    try {
+      let pool = await getClient();
+      let queryDB = `
+      Select filters.id, filters.type, filters.stock, SUM(filters_installed.installed) AS installed
+      FROM filters
+      JOIN filters_installed
+      ON filters_installed.filter_id = filters.id
+      GROUP BY filters.id;`;
+      let filters = await pool.query(queryDB);
+      return filters.rows;
+    }
+    catch (err) {
+      throw err;
+    }
   },
-  addFilter: async (qty) => {
-    // query the DB to add a new record to the filter table
-    let pool = await getClient();
-    console.log(qty);
+  addFilter: async (qty, id) => {
+    try {
+      let pool = await getClient();
+      let queryDB = `
+        UPDATE filters
+        SET stock = (SELECT filters.stock FROM filters WHERE filters.id = ${id}) + ${qty}
+        WHERE filters.id = ${id}
+        RETURNING *;`;
+      let addedFilterCount = await pool.query(queryDB);
+      console.log(addedFilterCount)
+    }
+    catch (err) {
+      throw err;
+    }
   },
-  removeFilter: async (qty) => {
-    // removes a filter type from filter table
-    console.log(qty, 'remove');
+  removeFilter: async (qty, id) => {
+    try {
+      let pool = await getClient();
+      let queryDB = `
+        UPDATE filters
+        SET stock = (SELECT filters.stock FROM filters WHERE filters.id = ${id}) - ${qty}
+        WHERE filters.id = ${id}
+        RETURNING *;`;
+      let removedFilterCount = await pool.query(queryDB);
+      console.log(removedFilterCount)
+    }
+    catch (err) {
+      throw err;
+    }
   },
 }

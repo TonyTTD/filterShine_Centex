@@ -11,8 +11,7 @@
   justify-content: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   z-index: 10;
-  /* max-width: 700px;
-  max-height: 500px; */
+  height: auto;
 }
 
 .modal-content {
@@ -22,6 +21,8 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal-body {
@@ -75,6 +76,6 @@ input {
   height: 50px;
 }
 
-.modal-filters {
-  margin-top: 50px;
-}
+/* .modal-filters {
+  margin-top: 5px;
+} */

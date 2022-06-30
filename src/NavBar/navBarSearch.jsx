@@ -6,9 +6,8 @@ const NavSearchBar = () => {
 
   let test = useRecoilValue(searchBarFilter);
   let [useSearchBar, setSearchBar] = useRecoilState(searchBarFilterByClient);
-  
+
   const searchClient = (search) => {
-    console.log('service tab clicked', search.target.value);
     setSearchBar(search.value);
   };
 

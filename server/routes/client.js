@@ -1,9 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const { getAllClients } = require('./controller/clients.js');
+const { getAllClients, updateClientServiceDate, updateClientCycle } = require('./controller/clients.js');
 
 router.get('/', getAllClients);
-
-//Add API endpoint for a post request to the DB to add a new client
+router.put('/update/:task', (req, res) => {
+  try {
+    if (req.params.task === 'serviceon') {
+      updateClientServiceDate(req, res);
+    }
+    if (req.params.task === 'cycle') {
+      updateClientCycle(req, res);
+    }
+  }
+  catch (err) {
+    res.status(202).json({
+      message: `error: Invalid parameter`
+    })
+  }
+});
 
 module.exports = router;

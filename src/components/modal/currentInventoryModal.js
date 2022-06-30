@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { requestModal, selectedService, selectedServiceSelector, selectedFilter, alertDialog, updateFilterCount } from '../../atom_selector/recoil.js';
+import { requestModal, selectedFilter, alertDialog, updateFilterCount } from '../../atom_selector/recoil.js';
 import './modal.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import AlertDialog from './confirmationModal.js';
 
 var InventoryFormModal = () => {
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   let [useFilterCount, setFilterCountToBeUpdated] = useRecoilState(updateFilterCount);
-  let selectedLog = useRecoilValue(selectedService);
-  let filtersUsed = useRecoilValue(selectedServiceSelector);
   let selectFilter = useRecoilValue(selectedFilter);
   let [addedFilterCount, setFilterCountAdded] = useState(null);
   let [removedFilterCount, setFilterCountRemoved] = useState(null);
@@ -75,7 +72,7 @@ var InventoryFormModal = () => {
               </div>
               <Stack direction="column" spacing={2} margin={5}>
                 <Button variant="contained" onClick={() => {onUpdate()}}>Update</Button>
-                <Button variant="contained" onClick={() => setRequestModal(false)}>Cancel</Button>
+                <Button variant="contained" onClick={() => onCancel()}>Cancel</Button>
               </Stack>
             </Box>
             </div>

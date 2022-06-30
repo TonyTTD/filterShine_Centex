@@ -1,33 +1,33 @@
 import { atom, selector } from 'recoil';
-import sample from './sampleData.js';
 import filterCount from './sampleFilterCount.js';
 import moment from 'moment';
-import axios from 'axios';
 
-// ---- Display the existing service requests
+//---- Display the existing service requests
 export const backlogList = atom({
   key: 'backlogList',
   default: [],
 });
 
-// ---- Display the current inventory
+//---- Display the current inventory
 export const inventoryCount = atom({
   key: 'inventoryCount',
   default: filterCount,
 });
 
+//---- Set the status of the service log modal
 export const requestModal = atom({
   key: 'requestModal',
   default: false
 });
 
+//---- Sets the client info to be displayed on the service modal
 export const selectedService = atom({
   key: 'selectedService',
   default: {
     service_id: null,
     client_id: null,
     company: '',
-    poc: '',
+    contact: '',
     phone_number: '',
     poc_number: '',
     email: '',
@@ -76,24 +76,13 @@ export const selectedDate = atom({
   default: [moment(new Date()).format('MM-DD-YYYY'),""]
 });
 
+//---- Set status of the date range picker
 export const enableDateRange = atom({
   key :'enableDateRange',
   default: false
 });
 
-export const searchBarFilterByClient = atom({
-  key: 'searchBarFilterByClient',
-  default: ''
-});
-
-export const serviceLogSelector = selector({
-    key: 'serviceLogSelector',
-    get: async ({get}) => {
-      const res = await axios.get('/filtershine/api/client');
-      return res;
-    }
-});
-
+//---- Sets the filters installed per client for modal
 export const selectedServiceSelector = selector({
   key: 'selectedServiceSelector',
   get: ({get}) => {
@@ -105,19 +94,7 @@ export const selectedServiceSelector = selector({
   }
 });
 
-export const searchBarFilter = selector({
-  key: 'searchBarFilter',
-  get: ({get}) => {
-    let backLog = get(backlogList);
-    let searched = get(searchBarFilterByClient);
-
-    //search through array of objects
-    let filteredSearch = backLog.filter(client => client.company === searched);
-    console.log(filteredSearch);
-    return filteredSearch;
-  }
-});
-
+//---- Filters out all the clients between the picked date range
 export const serviceRequestSelector = selector({
   key: 'serviceRequestSelector',
   get: ({get}) => {

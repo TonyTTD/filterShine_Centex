@@ -11,7 +11,6 @@ const Schedule = () => {
         <h2>At a Glance</h2>
         <Calendar/>
       </div>
-      {/* <div className="backlog-title">Service Logs</div> */}
       <Backlog/>
       <InventoryCount/>
     </div>

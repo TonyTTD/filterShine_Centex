@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { alertDialog, updateFilterCount } from '../../atom_selector/recoil.js';
 import Button from '@mui/material/Button';
@@ -12,10 +12,6 @@ import axios from 'axios';
 const AlertDialog = () => {
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   let updateFilter = useRecoilValue(updateFilterCount);
-
-  const handleClickOpen = () => {
-    setAlertDialog(true);
-  };
 
   const handleClose = () => {
     setAlertDialog(false);

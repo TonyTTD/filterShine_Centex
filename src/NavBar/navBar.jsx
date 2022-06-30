@@ -1,26 +1,6 @@
-// import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-// const NavBar = () => {
-
-//   return (
-//     <>
-//       {/* <NavSearchBar/> */}
-//       <div className="nav-bar">
-//         <Link to="/schedule" id="tabs" className="schedule-tab">Schedule</Link>
-//         <Link to="/add-a-service" id="tabs" className="add-Service-tab">Add Service</Link>
-//         <Link to="/inventory" id="tabs" className="inventory-tab">Inventory</Link>
-//         <Link to="/contacts" id ="tabs" className="contacts-tab">Contacts</Link>
-//         <Link to="/aboutus" id="tabs" className="about-tab">About Us</Link>
-//       </div>
-//     </>
-//   )
-// };
-
-// export default NavBar;
 import logo from './images/filtershine.webp';
-
-import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -39,11 +19,10 @@ const pages = ['schedule', 'add-a-service', 'inventory'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
-    console.log(event.currentTarget);
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event) => {
@@ -51,7 +30,6 @@ const ResponsiveAppBar = () => {
   };
 
   const handleCloseNavMenu = (event) => {
-    console.log(event);
     setAnchorElNav(null);
   };
 
@@ -63,7 +41,6 @@ const ResponsiveAppBar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap

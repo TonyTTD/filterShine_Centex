@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-const port = process.env.PORT || 3003;
+const port = process.env.SERVERPORT || 3003;
 
 app.use(cors({
   origin: [

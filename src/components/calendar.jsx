@@ -39,7 +39,6 @@ var Calendar = () => {
     <>
       <div className="calendar-container">{defaultDateRange()} <br></br>
         <input id="calendar-select-from" type="date"></input>
-        {/* <input className="from-date-select" type="submit" onClick={(event) => {onDateSelect(event)}}></input> */}
         <input id="calendar-select-to" type="date" hidden></input><br></br>
         <button className="date-select" onClick={(event) => {onDateSelect(event)}}>Search</button>
       </div>

@@ -16,11 +16,11 @@ module.exports = {
   updateFilterCount: async (req, res) => {
     try {
       if (req.body.add) {
-        await addFilter(req.body.add);
+        await addFilter(req.body.add, req.body.filterId);
         res.status(200);
       }
       if (req.body.remove) {
-        await removeFilter(req.body.remove);
+        await removeFilter(req.body.remove, req.body.filterId);
         res.status(200);
       }
     }
