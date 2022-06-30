@@ -11,7 +11,10 @@ module.exports.getClient = async () => {
     ssl: false
   });
 
-  await pool.connect().catch(err => console.log(err));
+  await pool.connect().then(client => {
+    client.release();
+    console.log('Released client');
+  }).catch(err => console.log(err));
   console.log('Connected to PSQL database...');
 
   return pool;

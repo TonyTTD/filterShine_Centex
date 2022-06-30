@@ -26,12 +26,14 @@ var Backlog = () => {
     {
       field: 'id',
       headerName: 'ID',
-      width: 70 },
+      width: 70
+    },
     {
       field: 'serviceon',
       headerName: 'Service Day / Start',
       width: 175,
-      valueGetter: (param) => `${moment(param.row.serviceon).format('dddd')} / ${moment(param.row.serviceon).format('MM-DD-YY')}` },
+      valueGetter: (param) => `${moment(param.row.serviceon).format('dddd')} / ${moment(param.row.serviceon).format('MM-DD-YY')}`
+    },
     {
       field: 'location',
       headerName: 'Location',
@@ -42,7 +44,6 @@ var Backlog = () => {
       field: 'contact',
       headerName: 'POC',
       sortable: false,
-      // type: 'number',
       width: 90,
     },
     {

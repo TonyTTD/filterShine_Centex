@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const {} = require('./controller/filter.js');
+const { getFilters, updateFilterCount } = require('./controller/filter.js');
 
-router.get('/', (req, res) => {
-  res.status(200).json({
-    message: 'Success'
-  });
-});
+router.get('/', getFilters);
+router.put('/', updateFilterCount);
 
 module.exports = router;

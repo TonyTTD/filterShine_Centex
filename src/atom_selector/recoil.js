@@ -46,6 +46,30 @@ export const selectedService = atom({
     title: ''}
 });
 
+//--- Sets the selected filter to be updated
+export const selectedFilter = atom({
+  key: 'selectedFilter',
+  default: {}
+})
+
+//---- Sets the status of the confirmation popup
+export const alertDialog = atom({
+  key: 'alertDialog',
+  default: false
+})
+
+//---- Stores the user's updated filter inventory info
+export const updateFilterCount = atom({
+  key: 'updateFilterCount',
+  default: {add: null, remove: null, filterId: null}
+})
+
+//---- Stores all the filter info
+export const getAllFilterInfo = atom({
+  key: 'getAllFilterInfo',
+  default: []
+})
+
 //---- Stores the picked date
 export const selectedDate = atom({
   key: 'selectedDate',

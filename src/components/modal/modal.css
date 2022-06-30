@@ -34,6 +34,16 @@
   flex-direction: column;
 }
 
+.modal-body-filter {
+  padding: 10px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  height: 400px;
+  width: 475px;
+  display:flex;
+  flex-direction: column;
+}
+
 .modal-company-info {
   margin-top: 20px;
   margin-bottom: 20px;
