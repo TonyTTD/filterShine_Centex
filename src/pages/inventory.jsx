@@ -65,7 +65,7 @@ const Inventory = () => {
 
   return (
     <>
-      <div style={{ height: 700, width: '50%', margin:"25px" }}> Total Inventory
+      <div style={{ height: 700, width: '50%', margin:"5%" }}> Total Inventory
         <DataGrid
           rows={rows}
           columns={columns}

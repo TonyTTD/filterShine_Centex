@@ -29,14 +29,28 @@ module.exports = {
       throw err;
     }
   },
-  addClient: async () => {
+  addClient: async (clientInfo) => {
     try {
       let pool = await getClient();
+
+      const {newClientInfo, filterList} = clientInfo;
+
+      let queryDBClient =
+      `INSERT INTO clients (route, city_location, company, location, address, city, st, zip, phone_number, contact, title, poc_number, email, serviceon, cycle, createdon) VALUES ('${newClientInfo.route}', '${newClientInfo.city_location}', '${newClientInfo.company}', '${newClientInfo.location}', '${newClientInfo.address}', '${newClientInfo.city}', '${newClientInfo.st}', '${newClientInfo.zip}', '${newClientInfo.phone_number}', '${newClientInfo.contact}', '${newClientInfo.title}', '${newClientInfo.poc_number}', '${newClientInfo.email}', '${newClientInfo.serviceon}', '${newClientInfo.cycle}', '${newClientInfo.createdon}');
+      `;
+
+      await pool.query(queryDBClient);
+
+      let clientId = await pool.query(`SELECT max(clients.id) FROM clients`);
+
+      for (let i = 0; i < filterList.length; i++) {
+        await pool.query(`INSERT INTO filters_installed (client_id, filter_id, installed) VALUES ('${clientId.rows[0].max}', '${filterList[i][0]}', '${filterList[i][2]}');`);
+      }
+
     }
     catch (err) {
       throw err;
     }
-    // let queryDB = `INSERT INTO clients;`; //Update this section when we have defined a client-side API route
   },
   updateServiceDate: async (newDate, id) => {
     try {

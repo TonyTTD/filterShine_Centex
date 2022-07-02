@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
-
+import moment from 'moment';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -58,7 +58,23 @@ const AddService = () => {
   };
 
   const onSubmit = () => {
-    console.log(filterList);
+    if (!filterList.length) {
+      alert('Please specify filters.');
+      return;
+    }
+    for (let i = 0; i < filterList.length; i ++) {
+      if (!filterList[i][2]) {
+        alert('Please specify a value greater than 0 for each filter.')
+        return;
+      }
+    }
+    newClientInfo.createdon = moment(new Date()).format("YYYY-MM-DD");
+    axios.post('http://localhost:4004/filtershine/api/client/new', {
+      newClientInfo,
+      filterList
+    })
+    .then(data => {console.log(data);})
+    .catch(err => {console.log(err);});
   };
 
   const pickFilter = (filter) => {

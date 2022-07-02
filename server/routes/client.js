@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllClients, updateClientServiceDate, updateClientCycle } = require('./controller/clients.js');
+const { getAllClients, updateClientServiceDate, updateClientCycle, addNewClient } = require('./controller/clients.js');
 
 router.get('/', getAllClients);
 router.put('/update/:task', (req, res) => {
@@ -18,5 +18,6 @@ router.put('/update/:task', (req, res) => {
     })
   }
 });
+router.post('/new', addNewClient);
 
 module.exports = router;

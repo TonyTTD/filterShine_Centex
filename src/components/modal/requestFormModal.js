@@ -86,6 +86,8 @@ var RequestFormModal = () => {
                     id="outlined-filter-update"
                     label={`Current cycle: ${selectedLog.cycle}`}
                     onChange={(e) => {handleCycle(e.target.value)}}
+                    size="small"
+                    style={{margin:"1ch"}}
                   >
                   </TextField>
               </div>

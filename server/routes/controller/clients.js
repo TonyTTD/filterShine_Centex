@@ -34,4 +34,17 @@ module.exports = {
       });
     }
   },
+  addNewClient: async (req, res) => {
+    try {
+      await addClient(req.body);
+      res.status(200).json({
+        message: "Added new client."
+      });
+    }
+    catch (err) {
+      res.status(404).json({
+        message: `error: ${err}`
+      });
+    }
+  }
 };

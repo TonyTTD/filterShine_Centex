@@ -12,12 +12,11 @@ const { getClient } = require('./connect.js');
 
 (async () => {
   const pool = await getClient();
-  // let schema = 'id INT PRIMARY KEY, type VARCHAR, stock INT, available INT, installed INT, price VARCHAR';
-  let testSchema = 'id INT PRIMARY KEY, route VARCHAR, city_location VARCHAR, company VARCHAR, location VARCHAR, address VARCHAR, city VARCHAR, st VARCHAR, zip VARCHAR, phone_number VARCHAR, contact VARCHAR, title VARCHAR, poc_number VARCHAR, email VARCHAR, serviceOn DATE, cycle INT';
-  let createTableQuery = `
-    CREATE TABLE IF NOT EXISTS clients (
-      ${testSchema}
-    );`;
+
+  let createTableQuery =
+  `CREATE TABLE IF NOT EXISTS clients (
+      id SERIAL PRIMARY KEY, route VARCHAR, city_location VARCHAR, company VARCHAR, location VARCHAR, address VARCHAR, city VARCHAR, st VARCHAR, zip VARCHAR, phone_number VARCHAR, contact VARCHAR, title VARCHAR, poc_number VARCHAR, email VARCHAR, serviceOn DATE, cycle INT
+  );`;
 
   await pool.query(createTableQuery)
     .then((data) => {console.log(data)})
@@ -35,10 +34,10 @@ const { getClient } = require('./connect.js');
 
 (async () => {
   const pool = await getClient();
-  let testSchema = 'id INT PRIMARY KEY, type VARCHAR, stock INT';
-  let createTableQuery = `
-    CREATE TABLE IF NOT EXISTS filters (
-      ${testSchema}
+
+  let createTableQuery =
+  `CREATE TABLE IF NOT EXISTS filters (
+      id SERIAL PRIMARY KEY, type VARCHAR, stock INT
     );`;
 
   await pool.query(createTableQuery)
@@ -46,7 +45,7 @@ const { getClient } = require('./connect.js');
     .catch((err) => {console.log(err)});
 
   let inventoryPath = '/home/toekneedeez/hackreactor/filterInventory.csv';
-  let copyInventoryCSV = `COPY filters FROM '${inventoryPath}' WITH DELIMITER ',' CSV header`;
+  let copyInventoryCSV = `COPY filters FROM '${inventoryPath}' WITH DELIMITER ',' CSV header;`;
 
   await pool.query(copyInventoryCSV)
     .then(data => {console.log('Successful copy from filters.csv...', data)})
@@ -57,7 +56,7 @@ const { getClient } = require('./connect.js');
 
 (async () => {
   const pool = await getClient();
-  let testSchema = 'id INT PRIMARY KEY, client_id INT, filter_id INT, installed INT';
+  let testSchema = 'id SERIAL PRIMARY KEY, client_id INT, filter_id INT, installed INT';
   let createTableQuery = `
     CREATE TABLE IF NOT EXISTS filters_installed (
       ${testSchema}
@@ -76,7 +75,3 @@ const { getClient } = require('./connect.js');
 
   await pool.end();
 })();
-
-// SELECT filters.id, filters.type
-// FROM filters, filters_installed
-// WHERE filters_installed.client_id = 5 OR filters_installed.client_id = 6 AND filters_installed.filter_id = filters.id;
