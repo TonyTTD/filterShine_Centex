@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { requestModal, selectedFilter, alertDialog, updateFilterCount } from '../../atom_selector/recoil.js';
+import { useRecoilState } from 'recoil';
+import { requestModal, alertDialog } from '../../atom_selector/recoil.js';
 import './modal.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-var InventoryFormModal = () => {
+
+var InventoryFormModal = (props) => {
+
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
-  let [useFilterCount, setFilterCountToBeUpdated] = useRecoilState(updateFilterCount);
-  let selectFilter = useRecoilValue(selectedFilter);
   let [addedFilterCount, setFilterCountAdded] = useState(null);
   let [removedFilterCount, setFilterCountRemoved] = useState(null);
-
 
   const addInventory = (add) => {
     setFilterCountAdded(parseInt(add));
@@ -25,7 +24,7 @@ var InventoryFormModal = () => {
   };
 
   const onUpdate = () => {
-    setFilterCountToBeUpdated({add: addedFilterCount, remove: removedFilterCount, filterId: selectFilter.row.id});
+    props.getUpdatedFilterCount({add: addedFilterCount, remove: removedFilterCount, filterId: props.selectFilter.row.id});
     setAlertDialog(true);
     setFilterCountAdded(null);
     setFilterCountRemoved(null);
@@ -40,9 +39,10 @@ var InventoryFormModal = () => {
 
   if(useRequestModal === true) {
     return (
+      <>
       <div className="modal">
         <div className="modal-content">
-            <div className="modal-body-filter"><h2>Edit Filter Type: {selectFilter.row.type}</h2>
+            <div className="modal-body-filter"><h2>Edit Filter Type: {props.selectFilter.row.type}</h2>
             <Box
               component="form"
               sx={{
@@ -78,6 +78,7 @@ var InventoryFormModal = () => {
             </div>
         </div>
       </div>
+      </>
     );
   }
 };

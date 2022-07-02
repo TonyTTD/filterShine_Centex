@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { getAllFilterInfo } from '../atom_selector/recoil.js';
+import { getAllFilterInfo, alertDialog } from '../atom_selector/recoil.js';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,6 +15,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AlertDialog from '../components/modal/confirmationModal.js';
 
 const AddService = () => {
   const [newClientInfo, setNewClient] = useState(
@@ -41,12 +42,14 @@ const AddService = () => {
   const [dense, setDense] = useState(true);
   const [secondary, setSecondary] = useState(false);
   let [allFilters, setFilters] = useRecoilState(getAllFilterInfo);
+  let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   const filterTypes = allFilters;
 
   useEffect(() => {
     axios.get(`http://localhost:4004/filtershine/api/filter`)
     .then(data => {setFilters(data.data)})
     .catch(err => {throw err;});
+
   }, []);
 
   const handleChange = (value, prop) => {
@@ -66,6 +69,15 @@ const AddService = () => {
         return;
       }
     }
+    setAlertDialog(true);
+  };
+
+  const pickFilter = (filter) => {
+    let filterInfo = filter.split(',');
+    setFilterList([...filterList, [filterInfo[0], filterInfo[1]]])
+  };
+
+  const sendRequest = () => {
     newClientInfo.createdon = moment(new Date()).format("YYYY-MM-DD");
     axios.post('http://localhost:4004/filtershine/api/client/new', {
       newClientInfo,
@@ -74,12 +86,6 @@ const AddService = () => {
     .then(data => {console.log(data);})
     .catch(err => {console.log(err);});
   };
-
-  const pickFilter = (filter) => {
-    let filterInfo = filter.split(',');
-    setFilterList([...filterList, [filterInfo[0], filterInfo[1]]])
-  };
-
 
   const deleteFilter = (filterId) => {
     let currentList = filterList.slice();
@@ -301,6 +307,7 @@ const AddService = () => {
         <Button variant="contained" onClick={() => {onSubmit()}}>Add Service</Button>
         <Button variant="contained">Cancel</Button>
       </Stack>
+      <AlertDialog sendRequest={() => {sendRequest()}}/>
     </>
   )
 };

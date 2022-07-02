@@ -58,12 +58,6 @@ export const alertDialog = atom({
   default: false
 })
 
-//---- Stores the user's updated filter inventory info
-export const updateFilterCount = atom({
-  key: 'updateFilterCount',
-  default: {add: null, remove: null, filterId: null}
-})
-
 //---- Stores all the filter info
 export const getAllFilterInfo = atom({
   key: 'getAllFilterInfo',

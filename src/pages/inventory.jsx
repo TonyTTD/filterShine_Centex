@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { requestModal, selectedFilter, getAllFilterInfo } from '../atom_selector/recoil.js';
+import { requestModal, getAllFilterInfo } from '../atom_selector/recoil.js';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import InventoryFormModal from '../components/modal/currentInventoryModal.js';
@@ -9,18 +9,29 @@ import AlertDialog from '../components/modal/confirmationModal.js';
 const Inventory = () => {
   let [filters, setFilters] = useRecoilState(getAllFilterInfo);
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
-  let [selectFilter, setSelectFilter] = useRecoilState(selectedFilter);
+  let [selectFilter, setSelectFilter] = useState({});
+  const [updateFilterCount, setUpdateFilterCount] = useState({});
   const rows = filters;
-  
+
   useEffect(() => {
     axios.get('http://localhost:4004/filtershine/api/filter/')
     .then(data => {setFilters(data.data);})
     .catch(err => {throw err;});
   }, []);
 
-  const onInventoryEdit = (id) => {
-    setSelectFilter(id);
+  const onInventoryEdit = (filterInfo) => {
+    setSelectFilter(filterInfo);
     setRequestModal(true);
+  };
+
+  const getUpdatedFilterCount = (filterInfo) => {
+    setUpdateFilterCount(filterInfo);
+  };
+
+  const sendRequest = () => {
+    axios.put('http://localhost:4004/filtershine/api/filter', updateFilterCount)
+    .then(data => {console.log(data);})
+    .catch(err => {throw err});
   };
 
   const columns = [
@@ -62,8 +73,6 @@ const Inventory = () => {
     }
   ];
 
-
-
   return (
     <>
       <div style={{ height: 700, width: '50%', margin:"5%" }}> Total Inventory
@@ -78,8 +87,8 @@ const Inventory = () => {
           }}
         />
       </div>
-      <InventoryFormModal/>
-      <AlertDialog/>
+      <InventoryFormModal selectFilter={selectFilter} getUpdatedFilterCount={(info) => {getUpdatedFilterCount(info)}}/>
+      <AlertDialog sendRequest={() => {sendRequest()}}/>
     </>
   )
 }

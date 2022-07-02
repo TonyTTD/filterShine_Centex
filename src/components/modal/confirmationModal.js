@@ -1,27 +1,24 @@
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { alertDialog, updateFilterCount } from '../../atom_selector/recoil.js';
+import { useRecoilState } from 'recoil';
+import { alertDialog } from '../../atom_selector/recoil.js';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios from 'axios';
 
-const AlertDialog = () => {
+const AlertDialog = (props) => {
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
-  let updateFilter = useRecoilValue(updateFilterCount);
 
   const handleClose = () => {
     setAlertDialog(false);
   };
 
   const handleAgree = () => {
-    axios.put('http://localhost:4004/filtershine/api/filter', updateFilter)
-    .catch(err => {throw err});
+    props.sendRequest();
     setAlertDialog(false);
-  }
+  };
 
   return (
     <div>
@@ -32,11 +29,11 @@ const AlertDialog = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Update Inventory Count?"}
+          {"Update Services"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Confirm update/deletion.
+            Confirm update.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
