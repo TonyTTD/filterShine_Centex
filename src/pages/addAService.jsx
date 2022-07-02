@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { getAllFilterInfo } from '../atom_selector/recoil.js';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import moment from 'moment';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -41,14 +37,16 @@ const AddService = () => {
       title: ''
     }
   );
-
   const [filterList, setFilterList] = useState([]);
+  const [dense, setDense] = useState(true);
+  const [secondary, setSecondary] = useState(false);
   let [allFilters, setFilters] = useRecoilState(getAllFilterInfo);
+  const filterTypes = allFilters;
 
   useEffect(() => {
     axios.get(`http://localhost:4004/filtershine/api/filter`)
     .then(data => {setFilters(data.data)})
-    .catch(err => {console.log(err);});
+    .catch(err => {throw err;});
   }, []);
 
   const handleChange = (value, prop) => {
@@ -82,8 +80,6 @@ const AddService = () => {
     setFilterList([...filterList, [filterInfo[0], filterInfo[1]]])
   };
 
-  const [dense, setDense] = useState(true);
-  const [secondary, setSecondary] = useState(false);
 
   const deleteFilter = (filterId) => {
     let currentList = filterList.slice();
@@ -111,10 +107,7 @@ const AddService = () => {
     }
   };
 
-  const generate = (element) => {
-    let filterId = Object.keys(filterList);
-    let filterQtyandType = Object.values(filterList);
-
+  const generateFilterCart = (element) => {
     return filterList.map(filter => {
       return (
         <ListItem key={filter[0]}
@@ -145,8 +138,6 @@ const AddService = () => {
       )
     });
   };
-
-  const filterTypes = allFilters;
 
   return (
     <>
@@ -299,13 +290,13 @@ const AddService = () => {
         </div>
       </Box>
       <Grid item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" style={{width: "25ch"}}>
-            Filter Cart: {filterList.length ? "" : "No filters added."}
-          </Typography>
-            <List dense={dense}>
-              {generate()}
-            </List>
-        </Grid>
+        <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" style={{width: "25ch"}}>
+          Filter Cart: {filterList.length ? "" : "No filters added."}
+        </Typography>
+        <List dense={dense}>
+          {generateFilterCart()}
+        </List>
+      </Grid>
       <Stack direction="row" spacing={2}>
         <Button variant="contained" onClick={() => {onSubmit()}}>Add Service</Button>
         <Button variant="contained">Cancel</Button>

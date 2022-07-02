@@ -10,7 +10,8 @@ const Inventory = () => {
   let [filters, setFilters] = useRecoilState(getAllFilterInfo);
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
   let [selectFilter, setSelectFilter] = useRecoilState(selectedFilter);
-
+  const rows = filters;
+  
   useEffect(() => {
     axios.get('http://localhost:4004/filtershine/api/filter/')
     .then(data => {setFilters(data.data);})
@@ -61,7 +62,7 @@ const Inventory = () => {
     }
   ];
 
-  const rows = filters;
+
 
   return (
     <>
