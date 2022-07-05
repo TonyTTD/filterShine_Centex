@@ -95,6 +95,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -114,9 +115,10 @@ const ResponsiveAppBar = () => {
           >
             LOGO
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Link to={`/${page}`} style={{textDecoration: "none"}}>
+              <Link key={page} to={`/${page}`} style={{textDecoration: "none"}}>
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
@@ -157,6 +159,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

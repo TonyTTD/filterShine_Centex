@@ -29,7 +29,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server-dev": "nodemon ./server/index.js",
+    "server-dev": "nodemon ./server/index.js webpack --mode development",
+    "server": "node ./server/index.js",
+    "seed": "node ./database/seed.js",
+    "start:prod": "node dist/app.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

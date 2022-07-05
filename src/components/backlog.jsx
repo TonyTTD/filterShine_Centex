@@ -57,13 +57,13 @@ var Backlog = () => {
   const rows = backLog.filterLog;
 
   return (
-    <div className="backlog" width="500">
-      <div style={{ height: 400, width: '100%' }}>
+    <div className="backlog">
+      <div style={{ height: 700, width: '100%' }}>
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={10}
-          rowsPerPageOptions={[10]}
+          pageSize={15}
+          rowsPerPageOptions={[15]}
           className={'service-request-container'}
           onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
             event.defaultMuiPrevent = true;
