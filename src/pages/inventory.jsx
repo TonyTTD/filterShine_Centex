@@ -16,7 +16,7 @@ const Inventory = () => {
   const rows = filters;
 
   useEffect(() => {
-    axios.get('http://localhost:4004/filtershine/api/filter/')
+    axios.get('http://44.204.35.57:4004/filtershine/api/filter/')
     .then(data => {setFilters(data.data);})
     .catch(err => {throw err;});
   }, []);
@@ -31,7 +31,7 @@ const Inventory = () => {
   };
 
   const sendRequest = () => {
-    axios.put('http://localhost:4004/filtershine/api/filter', updateFilterCount)
+    axios.put('http://44.204.35.57:4004/filtershine/api/filter', updateFilterCount)
     .then(data => {console.log(data);})
     .catch(err => {throw err});
   };

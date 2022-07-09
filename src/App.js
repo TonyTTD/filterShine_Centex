@@ -17,7 +17,7 @@ var App = () => {
 
   useEffect(() => {
     axios({
-      baseURL: 'http://localhost:4004',
+      baseURL: 'http://44.204.35.57:4004',
       url: '/filtershine/api/client',
       method: 'get'
     })

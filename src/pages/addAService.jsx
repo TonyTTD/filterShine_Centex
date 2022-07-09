@@ -46,7 +46,7 @@ const AddService = () => {
   const filterTypes = allFilters;
 
   useEffect(() => {
-    axios.get(`http://localhost:4004/filtershine/api/filter`)
+    axios.get(`http://44.204.35.57:4004/filtershine/api/filter`)
     .then(data => {setFilters(data.data)})
     .catch(err => {throw err;});
 
@@ -79,7 +79,7 @@ const AddService = () => {
 
   const sendRequest = () => {
     newClientInfo.createdon = moment(new Date()).format("YYYY-MM-DD");
-    axios.post('http://localhost:4004/filtershine/api/client/new', {
+    axios.post('http://44.204.35.57:4004/filtershine/api/client/new', {
       newClientInfo,
       filterList
     })
