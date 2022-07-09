@@ -70,7 +70,7 @@ const ResponsiveAppBar = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            {/* <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -87,13 +87,19 @@ const ResponsiveAppBar = () => {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
-            >
+            > */}
               {pages.map((page) => (
-                <MenuItem key={page} onClick={(e) => {handleCloseNavMenu(e)}}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+                <Link key={page} to={`/${page}`} style={{textDecoration: "none"}}>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+                </Link>
               ))}
-            </Menu>
+            {/* </Menu> */}
           </Box>
 
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />

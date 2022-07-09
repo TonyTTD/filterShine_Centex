@@ -21,7 +21,7 @@ var App = () => {
       url: '/filtershine/api/client',
       method: 'get'
     })
-    .then(data => {setServiceLog(data.data)})
+    .then(data => {setServiceLog(data.data); console.log(data.data)})
     .catch(err => {throw err});
 
   },[]);
