@@ -3,6 +3,7 @@ import React, {useEffect} from 'react';
 import { useRecoilState } from 'recoil';
 import { backlogList } from './atom_selector/recoil.js';
 import axios from 'axios';
+import moment from 'moment';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -21,7 +22,8 @@ var App = () => {
       url: '/filtershine/api/client',
       method: 'get'
     })
-    .then(data => {setServiceLog(data.data); console.log(data.data)})
+    .then(data => {setServiceLog(data.data);
+      console.log(data.data)})
     .catch(err => {throw err});
 
   },[]);
@@ -31,6 +33,7 @@ var App = () => {
       <Router>
         <ResponsiveAppBar/>
         <Routes>
+        <Route path="/" element={<Schedule/>}/>
           <Route path="/schedule" element={<Schedule/>}/>
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/add-a-service" element={<AddService/>}/>
