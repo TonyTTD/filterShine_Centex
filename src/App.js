@@ -31,6 +31,7 @@ var App = () => {
       <Router>
         <ResponsiveAppBar/>
         <Routes>
+          <Route path="/" element={<Schedule/>}/>
           <Route path="/schedule" element={<Schedule/>}/>
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/add-a-service" element={<AddService/>}/>
