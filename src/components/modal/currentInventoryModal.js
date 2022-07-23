@@ -9,7 +9,6 @@ import Stack from '@mui/material/Stack';
 
 
 var InventoryFormModal = (props) => {
-
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   let [addedFilterCount, setFilterCountAdded] = useState(null);
@@ -42,7 +41,7 @@ var InventoryFormModal = (props) => {
       <>
       <div className="modal">
         <div className="modal-content">
-            <div className="modal-body-filter"><h2>Edit Filter Type: {props.selectFilter.row.type}</h2>
+            <div className="modal-body-filter"><h2>Edit Filter Type: {props.selectFilter.row.type ? props.selectFilter.row.type : props.selectFilter.type}</h2>
             <Box
               component="form"
               sx={{
@@ -51,9 +50,9 @@ var InventoryFormModal = (props) => {
               noValidate
               autoComplete="off"
             >
-              <div>
+              {/* <div>
 
-              </div>
+              </div> */}
               <div>
                 <TextField
                   id="outlined-filter-update"

@@ -46,6 +46,11 @@ const Inventory = () => {
   }, []);
 
   const onInventoryEdit = (filterInfo) => {
+    if (!filterInfo.row) {
+      setSelectFilter({row: filterInfo});
+      setRequestModal(true);
+      return;
+    }
     setSelectFilter(filterInfo);
     setRequestModal(true);
   };
@@ -128,49 +133,44 @@ const Inventory = () => {
       <AlertDialog sendRequest={() => {sendRequest()}}/>
 
       <Grid className="alt-inventory" item xs={12} md={6}>
-          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
-            Avatar with text
-          </Typography>
-          {/* <Demo> */}
-            <List dense={dense}>
-              {filters.map((filter) => {
-                return (
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <CircularProgress variant="determinate" value={Math.round(filter.installed/filter.stock * 100)} />
-                      <Box
-                        sx={{
-                          top: 0,
-                          left: 0,
-                          bottom: 0,
-                          right: 0,
-                          position: 'absolute',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                        }}
-                      >
-                        <Typography variant="caption" component="div" color="text.secondary">
-                          {`${Math.round(filter.installed/filter.stock * 100)}%`}
-                        </Typography>
-                      </Box>
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={`${filter.type}`}
-                    secondary={`Installed: ${filter.installed} Unused: ${filter.stock - filter.installed} Stock: ${filter.stock}`}
-                    style={{width: "550"}}
-                  />
-                </ListItem>
-              )})}
-            </List>
-          {/* </Demo> */}
-        </Grid>
-        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-    </Box>
+        <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+        Total Inventory
+        </Typography>
+        <List dense={dense}>
+          {filters.map((filter) => {
+            return (
+            <ListItem key={filter.id} onClick={(e) => onInventoryEdit(filter)}>
+              <ListItemAvatar>
+                <Avatar>
+                  <CircularProgress variant="determinate" value={Math.round(filter.installed/filter.stock * 100)} />
+                  <Box
+                    sx={{
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      position: 'absolute',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Typography variant="caption" component="div" color="text.secondary">
+                      {`${Math.round(filter.installed/filter.stock * 100)}%`}
+                    </Typography>
+                  </Box>
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={`${filter.type}`}
+                secondary={`Installed: ${filter.installed} Unused: ${filter.stock - filter.installed} Stock: ${filter.stock}`}
+              />
+            </ListItem>
+          )})}
+        </List>
+      </Grid>
     </>
   )
-}
+};
 
 export default Inventory;
