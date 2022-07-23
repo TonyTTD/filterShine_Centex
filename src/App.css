@@ -21,6 +21,7 @@
 .comp-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   text-align: center;
   justify-content: center;
   margin-top: 5%;

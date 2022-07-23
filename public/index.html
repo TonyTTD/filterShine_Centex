@@ -29,7 +29,30 @@
           display: block;
         }
       }
-      </style>
+
+      @media screen and (max-width: 767px) {
+        .backlog {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 400px) {
+        .comp-container {
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+          margin-top: 5%;
+          width: 100%;
+        }
+        .inventory-container {
+          width: 35%;
+        }
+        .calendar {
+          width: 35%;
+          height: 65%;
+        }
+      }
+    </style>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.

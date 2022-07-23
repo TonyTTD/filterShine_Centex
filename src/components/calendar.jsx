@@ -4,6 +4,11 @@ import { useRecoilState } from 'recoil';
 import { selectedDate, enableDateRange } from '../atom_selector/recoil.js';
 import './comp-styling/calendar.css';
 
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
+
 var Calendar = () => {
 
   let [selectDate, setSelectedDate] = useRecoilState(selectedDate);
@@ -36,15 +41,17 @@ var Calendar = () => {
   };
 
   return (
-    <>
-      <div className="calendar-container">{defaultDateRange()} <br></br>
-        <input id="calendar-select-from" type="date"></input>
-        <input id="calendar-select-to" type="date" hidden></input><br></br>
-        <button className="date-select" onClick={(event) => {onDateSelect(event)}}>Search</button>
-      </div>
-      <input type="checkbox" value="Range-enabled" onClick={(e) => enableToDate(e)}></input>
-      <span>Enable Range</span>
-    </>
+    <div className="calendar">
+      {defaultDateRange()}
+      <input id="calendar-select-from" type="date"></input>
+      <input id="calendar-select-to" type="date" hidden></input><br></br>
+      <Button variant="contained" size="small" onClick={(event) => {onDateSelect(event)}}>
+        Search
+      </Button>
+      <FormGroup>
+        <FormControlLabel control={<Checkbox defaultUnchecked onClick={(e) => enableToDate(e)}/>} label="Enable Range" />
+      </FormGroup>
+    </div>
   );
 };
 

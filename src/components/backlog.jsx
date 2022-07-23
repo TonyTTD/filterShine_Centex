@@ -57,22 +57,31 @@ var Backlog = () => {
   const rows = backLog.filterLog;
 
   return (
-    <div className="backlog">
-      <div style={{ height: "700px", width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={15}
-          rowsPerPageOptions={[15]}
-          className={'service-request-container'}
-          onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
-            event.defaultMuiPrevent = true;
-            onServiceEdit(params.id);
-          }}
-        />
-      </div>
-      <RequestFormModal/>
-    </div>
+    <>
+      <div className="backlog">
+        <div style={{ height: "700px", width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={15}
+            rowsPerPageOptions={[15]}
+            className={'service-request-container'}
+            onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
+              event.defaultMuiPrevent = true;
+              onServiceEdit(params.id);
+            }}
+          />
+        </div>
+        <RequestFormModal/>
+      </div><br></br>
+      {/* <div className="alt-backlog">
+        {backLog.filterLog.map((client) => {
+          return (
+            <div>{client.location}</div>
+          )
+        })}
+      </div> */}
+    </>
   );
 };
 

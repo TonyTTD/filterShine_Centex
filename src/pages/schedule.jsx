@@ -7,12 +7,9 @@ const InventoryCount = React.lazy(() => import('../components/inventoryCount.jsx
 const Schedule = () => {
   return (
     <div className="comp-container">
-      <div className="calendar">
-        <h2>At a Glance</h2>
-        <Calendar/>
-      </div>
-      <Backlog/>
+      <Calendar/>
       <InventoryCount/>
+      <Backlog/>
     </div>
   )
 };
