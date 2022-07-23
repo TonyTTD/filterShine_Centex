@@ -4,16 +4,40 @@ import { requestModal, getAllFilterInfo } from '../atom_selector/recoil.js';
 import axios from 'axios';
 import { DataGrid } from '@mui/x-data-grid';
 import clsx from 'clsx';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import InventoryFormModal from '../components/modal/currentInventoryModal.js';
 import AlertDialog from '../components/modal/confirmationModal.js';
+
+
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 const Inventory = () => {
   let [filters, setFilters] = useRecoilState(getAllFilterInfo);
   let [useRequestModal, setRequestModal] = useRecoilState(requestModal);
   let [selectFilter, setSelectFilter] = useState({});
   const [updateFilterCount, setUpdateFilterCount] = useState({});
-  const rows = filters;
+
+
+  const [dense, setDense] = React.useState(false);
+  const [secondary, setSecondary] = React.useState(false);
 
   useEffect(() => {
     axios.get('http://localhost:4004/filtershine/api/filter/')
@@ -36,6 +60,7 @@ const Inventory = () => {
     .catch(err => {throw err});
   };
 
+  const rows = filters;
   const columns = [
     {
       field: 'id',
@@ -45,32 +70,32 @@ const Inventory = () => {
     {
       field: 'type',
       headerName: 'Filter Type',
-      width: 130,
+      width: 100,
     },
     {
       field: 'stock',
       headerName: 'Total Stock',
       type: 'number',
-      width: 130,
+      width: 100,
     },
     {
       field: 'installed',
       headerName: 'Installed',
       type: 'number',
-      width: 130,
+      width: 100,
     },
     {
       field: 'unused',
       headerName: 'Unused',
       type: 'number',
-      width: 130,
+      width: 100,
       valueGetter: (param) => `${param.row.stock - param.row.installed}`,
     },
     {
       field: '%Used',
       headerName: '% Used',
       type: 'number',
-      width: 130,
+      width: 100,
       valueGetter: (param) => `${Math.round(param.row.installed/param.row.stock * 100)}%`,
       cellClassName: (params) => {
         if (params.value == null) {
@@ -87,28 +112,7 @@ const Inventory = () => {
 
   return (
     <>
-      <div style={{ height: 800, width: '60%', margin:"5%" }}> Total Inventory
-      {/* <Box
-        sx={{
-          height: 300,
-          width: '100%',
-          '& .super-app-theme--cell': {
-            backgroundColor: 'rgba(224, 183, 60, 0.55)',
-            color: '#1a3e72',
-            fontWeight: '600',
-          },
-          '& .super-app.negative': {
-            backgroundColor: 'rgba(157, 255, 118, 0.49)',
-            color: '#1a3e72',
-            fontWeight: '600',
-          },
-          '& .super-app.positive': {
-            backgroundColor: '#d47483',
-            color: '#1a3e72',
-            fontWeight: '600',
-          },
-        }}
-      > */}
+      <div className="inventory" style={{ height: 800, width: '50%', margin:"5%" }}> Total Inventory
         <DataGrid
           rows={rows}
           columns={columns}
@@ -119,10 +123,52 @@ const Inventory = () => {
             onInventoryEdit(params);
           }}
         />
-        {/* </Box> */}
       </div>
       <InventoryFormModal selectFilter={selectFilter} getUpdatedFilterCount={(info) => {getUpdatedFilterCount(info)}}/>
       <AlertDialog sendRequest={() => {sendRequest()}}/>
+
+      <Grid className="alt-inventory" item xs={12} md={6}>
+          <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+            Avatar with text
+          </Typography>
+          {/* <Demo> */}
+            <List dense={dense}>
+              {filters.map((filter) => {
+                return (
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <CircularProgress variant="determinate" value={Math.round(filter.installed/filter.stock * 100)} />
+                      <Box
+                        sx={{
+                          top: 0,
+                          left: 0,
+                          bottom: 0,
+                          right: 0,
+                          position: 'absolute',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Typography variant="caption" component="div" color="text.secondary">
+                          {`${Math.round(filter.installed/filter.stock * 100)}%`}
+                        </Typography>
+                      </Box>
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${filter.type}`}
+                    secondary={`Installed: ${filter.installed} Unused: ${filter.stock - filter.installed} Stock: ${filter.stock}`}
+                    style={{width: "550"}}
+                  />
+                </ListItem>
+              )})}
+            </List>
+          {/* </Demo> */}
+        </Grid>
+        <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+    </Box>
     </>
   )
 }

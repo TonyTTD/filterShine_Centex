@@ -13,6 +13,7 @@ const Inventory = React.lazy(() => import('./pages/inventory.jsx'));
 const Client = React.lazy(() => import('./pages/client.jsx'));
 const ResponsiveAppBar = React.lazy(() => import('./NavBar/navBar.jsx'));
 
+
 var App = () => {
   let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
 
@@ -33,7 +34,7 @@ var App = () => {
       <Router>
         <ResponsiveAppBar/>
         <Routes>
-        <Route path="/" element={<Schedule/>}/>
+          <Route path="/" element={<Schedule/>}/>
           <Route path="/schedule" element={<Schedule/>}/>
           <Route path="/inventory" element={<Inventory/>}/>
           <Route path="/add-a-service" element={<AddService/>}/>

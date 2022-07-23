@@ -10,6 +10,7 @@ const Schedule = () => {
       <div className="calendar">
         <h2>At a Glance</h2>
         <Calendar/>
+
       </div>
       <Backlog/>
       <InventoryCount/>

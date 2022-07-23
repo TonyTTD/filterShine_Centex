@@ -1,11 +1,14 @@
 .inventory-container {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  /* margin-left: 20px; */
   padding: 10px;
   border: 1px solid rgb(169,169,169);
   border-radius: 10px;
-  width: 170px;
+  width: 200px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .inventory-count {
@@ -13,7 +16,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  width: 150px;
+  width: 100%;
+  /* width: 150px; */
   left: 40px;
 }
 
@@ -24,23 +28,26 @@
   font-size: large;
 }
 
-.filter-id {
+/* .filter-id {
   display: flex;
   flex-direction: row;
   margin: 10px;
   align-items: right;
   justify-content: right;
-}
+} */
 
 .filter-type {
+  display: flex;
   margin: 10px;
-  align-items: left;
-  justify-content: right;
+  width: 60%;
+  justify-items: start;
 }
 
 .filter-total {
+  display: flex;
   margin: 10px;
-  align-items: left;
-  justify-content: right;
+  width: 40%;
+  justify-items: center;
+  text-align: end;
   font-weight: bold;
 }

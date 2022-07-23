@@ -1,9 +1,9 @@
 .calendar {
-  margin-right: 0%;
   position: relative;
-  bottom: 0px;
+  display: flex;
+  flex-direction: column;
   width: 220px;
-  height: 250px;
+  height: auto;
   border: 1px solid rgb(169,169,169);
   border-radius: 10px;
   justify-content: center;

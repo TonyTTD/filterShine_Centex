@@ -30,15 +30,13 @@ const ClientSearch = () => {
   };
 
   return (
-    <div>
+    <div style={{width: "100%", "justify-items": "center", margin: "3%"}}>
       <TextField
         required
         id="outlined-required"
         label="Search Client by Location"
-        // placeholder="Enter value"
         defaultValue={""}
         size="medium"
-        style={{width: "100ch", margin: "5ch"}}
         onChange={(e) => searchClient(e.target.value)}
       />
       <div style={{margin: '5ch'}}>
