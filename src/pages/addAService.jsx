@@ -39,8 +39,6 @@ const AddService = () => {
     }
   );
   const [filterList, setFilterList] = useState([]);
-  const [dense, setDense] = useState(true);
-  const [secondary, setSecondary] = useState(false);
   let [allFilters, setFilters] = useRecoilState(getAllFilterInfo);
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   const filterTypes = allFilters;
@@ -138,7 +136,6 @@ const AddService = () => {
         >
           <ListItemText
             primary={`${filter[1]}`}
-            secondary={secondary ? 'Secondary text' : null}
           />
         </ListItem>
       )
@@ -299,7 +296,7 @@ const AddService = () => {
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" style={{width: "25ch"}}>
           Filter Cart: {filterList.length ? "" : "No filters added."}
         </Typography>
-        <List dense={dense}>
+        <List>
           {generateFilterCart()}
         </List>
       </Grid>

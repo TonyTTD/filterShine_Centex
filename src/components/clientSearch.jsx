@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState} from 'recoil';
 import { backlogList } from '../atom_selector/recoil.js';
-import axios from 'axios';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -21,6 +20,7 @@ const ClientSearch = () => {
         if (desensitizeClient.indexOf(search) !== -1) {
           return client;
         }
+        return false;
       });
 
       setFilteredClient(clients);

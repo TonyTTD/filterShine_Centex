@@ -1,5 +1,5 @@
 #root {
-  position: relative;
+  /* position: relative; */
   align-items: center;
   justify-content: center;
   display: flex;
@@ -7,7 +7,7 @@
 }
 
 .App {
-  float: left;
+  /* float: left; */
   display: flex;
   flex-direction: column;
   text-align: center;

@@ -3,7 +3,6 @@ import React, {useEffect} from 'react';
 import { useRecoilState } from 'recoil';
 import { backlogList } from './atom_selector/recoil.js';
 import axios from 'axios';
-import moment from 'moment';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 

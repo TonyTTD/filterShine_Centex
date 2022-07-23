@@ -24,15 +24,14 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^2.1.3",
     "recoil": "^0.7.2",
-    "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "styled-components": "^5.3.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "server-dev": "nodemon ./server/index.js webpack --mode development",
     "server": "node ./server/index.js",
     "seed": "node ./database/seed.js",
-    "start:prod": "node dist/app.js",
+    "start:prod": "serve -s build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
