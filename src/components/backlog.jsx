@@ -4,8 +4,16 @@ import { serviceRequestSelector, requestModal, selectedService } from '../atom_s
 import './comp-styling/backlog.css';
 import RequestFormModal from './modal/requestFormModal.js';
 import moment from 'moment';
-import { DataGrid } from '@mui/x-data-grid';
 
+import { DataGrid } from '@mui/x-data-grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Avatar from '@mui/material/Avatar';
+import Grid from '@mui/material/Grid';
 
 var Backlog = () => {
   let backLog = useRecoilValue(serviceRequestSelector);
@@ -56,23 +64,65 @@ var Backlog = () => {
 
   const rows = backLog.filterLog;
 
+  const sortLogsByDate = (logs) => {
+    let copied = logs.slice();
+    return copied.sort((a, b) => {return moment(a.serviceon).isBefore(moment(b.serviceon))});
+  };
+
   return (
-    <div className="backlog">
-      <div style={{ height: 700, width: '100%' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={15}
-          rowsPerPageOptions={[15]}
-          className={'service-request-container'}
-          onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
-            event.defaultMuiPrevent = true;
-            onServiceEdit(params.id);
-          }}
-        />
+    <>
+      <div className="backlog">
+        <div style={{ height: "700px", width: '100%' }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={15}
+            rowsPerPageOptions={[15]}
+            className={'service-request-container'}
+            onRowClick={(params: GridRowParams, event: MuiEvent<React.MouseEvent<HTMLElement>>) => {
+              event.defaultMuiPrevent = true;
+              onServiceEdit(params.id);
+            }}
+          />
+        </div>
+
       </div>
       <RequestFormModal/>
-    </div>
+      {/* The alternate display of this component is based on screen width */}
+      <Grid className="alt-backlog" item xs={12} md={6}>
+        <List>
+          {sortLogsByDate(rows).map((filter) => {
+            return (
+            <ListItem key={filter.id} onClick={(e) => {onServiceEdit(filter.id)}}>
+              <ListItemAvatar>
+                <Avatar>
+                  <Box
+                    sx={{
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      position: 'absolute',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                  <Typography variant="caption" component="div" color="text.secondary">
+                    {`${moment(filter.serviceon).format('ddd')}`}
+                  </Typography>
+                  </Box>
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={`${filter.location}`}
+                secondary={`${filter.contact} #:${filter.phone_number}`}
+              />
+            </ListItem>
+          )})}
+        </List>
+      </Grid>
+    </>
   );
 };
 

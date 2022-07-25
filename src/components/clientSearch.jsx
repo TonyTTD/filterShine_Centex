@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState} from 'recoil';
 import { backlogList } from '../atom_selector/recoil.js';
-import axios from 'axios';
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -21,6 +20,7 @@ const ClientSearch = () => {
         if (desensitizeClient.indexOf(search) !== -1) {
           return client;
         }
+        return false;
       });
 
       setFilteredClient(clients);
@@ -30,15 +30,13 @@ const ClientSearch = () => {
   };
 
   return (
-    <div>
+    <div style={{width: "100%", "justify-items": "center", margin: "3%"}}>
       <TextField
         required
         id="outlined-required"
         label="Search Client by Location"
-        // placeholder="Enter value"
         defaultValue={""}
         size="medium"
-        style={{width: "100ch", margin: "5ch"}}
         onChange={(e) => searchClient(e.target.value)}
       />
       <div style={{margin: '5ch'}}>

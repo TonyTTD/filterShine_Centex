@@ -12,6 +12,7 @@ const Inventory = React.lazy(() => import('./pages/inventory.jsx'));
 const Client = React.lazy(() => import('./pages/client.jsx'));
 const ResponsiveAppBar = React.lazy(() => import('./NavBar/navBar.jsx'));
 
+
 var App = () => {
   let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
 
@@ -21,7 +22,8 @@ var App = () => {
       url: '/filtershine/api/client',
       method: 'get'
     })
-    .then(data => {setServiceLog(data.data); console.log(data.data)})
+    .then(data => {setServiceLog(data.data);
+      console.log(data.data)})
     .catch(err => {throw err});
 
   },[]);

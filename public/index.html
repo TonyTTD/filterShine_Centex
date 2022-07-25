@@ -3,17 +3,62 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/filtershine.webp" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="HandheldFriendly" content="true"/>
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Inventory upkeep website for a small business"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/filtershine.webp" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <style>
+      @media screen and (min-width: 901px) {
+        .inventory {
+          display: block;
+        }
+        .alt-inventory {
+          display: none;
+        }
+        .alt-backlog {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: 900px) {
+        .inventory {
+          display: none;
+        }
+        .alt-inventory {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: 767px) {
+        .backlog {
+          display: none;
+        }
+        .alt-backlog {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: 389px) {
+        /* .comp-container {
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+          margin-top: 5%;
+          width: 100%;
+        } */
+        .inventory-container {
+          width: 35%;
+        }
+        .calendar {
+          width: 35%;
+          height: 65%;
+        }
+      }
+    </style>
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
@@ -29,16 +74,6 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
     <script src="https://cdn.jsdelivr.net/npm/recoil@0.7.2/umd/recoil.production.js"></script>
   </body>
 </html>

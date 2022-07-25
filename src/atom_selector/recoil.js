@@ -119,7 +119,8 @@ export const serviceRequestSelector = selector({
             }
           }
         }
-      })
+        return false;
+      });
     } else {
       filterLog = log.filter(date => {
         var currentDate = moment(date.serviceon);
@@ -147,6 +148,7 @@ export const serviceRequestSelector = selector({
             }
           }
         }
+        return false;
       })
     }
 

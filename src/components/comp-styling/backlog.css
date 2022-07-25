@@ -1,24 +1,11 @@
 .backlog {
-  position: relative;
+  /* position: relative; */
   bottom: 0px;
   max-height: 1200px;
   overflow: hidden;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 1%;
   align-items: center;
   justify-content: center;
-}
-
-.backlog-title {
-  font-weight: bold;
-  font-size: x-large;
-  position: absolute;
-  top: 250px;
-}
-
-.backlog:hover {
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .service-request-container {
@@ -28,62 +15,4 @@
   margin-right: 0px;
   padding: 5px;
   max-height: 700px;
-}
-
-.service-request {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid rgb(169,169,169);
-  border-radius: 10px;
-  width: 650px;
-  display: flex;
-  flex-direction: row;
-  max-width: 650px;
-  max-height: 200px;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-.service-request:hover {
-  background-color: rgb(245,245,245);
-}
-
-/* .service-request:hover + .service-request-desc {
-  overflow:visible;
-  background-color: azure;
-  z-index: -1;
-} */
-
-.service-request-desc {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-/* service-request-container */
-.service-day {
-  margin-left: 5px;
-  margin-right: 5px;
-  font-weight: bold;
-}
-
-.service-id {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.service-location {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.service-poc {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.service-phone {
-  margin-left: 5px;
-  margin-right: 5px;
 }
