@@ -50,9 +50,6 @@ var InventoryFormModal = (props) => {
               noValidate
               autoComplete="off"
             >
-              {/* <div>
-
-              </div> */}
               <div>
                 <TextField
                   id="outlined-filter-update"

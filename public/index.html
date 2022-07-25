@@ -19,6 +19,9 @@
         .alt-inventory {
           display: none;
         }
+        .alt-backlog {
+          display: none;
+        }
       }
 
       @media screen and (max-width: 900px) {
@@ -34,16 +37,19 @@
         .backlog {
           display: none;
         }
+        .alt-backlog {
+          display: block;
+        }
       }
 
-      @media screen and (max-width: 400px) {
-        .comp-container {
+      @media screen and (max-width: 389px) {
+        /* .comp-container {
           flex-direction: column;
           text-align: center;
           justify-content: center;
           margin-top: 5%;
           width: 100%;
-        }
+        } */
         .inventory-container {
           width: 35%;
         }

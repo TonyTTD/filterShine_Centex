@@ -117,6 +117,7 @@ const Inventory = () => {
       <InventoryFormModal selectFilter={selectFilter} getUpdatedFilterCount={(info) => {getUpdatedFilterCount(info)}}/>
       <AlertDialog sendRequest={() => {sendRequest()}}/>
 
+      {/* Component below is displayed when the device screen size is of a smaller width*/}
       <Grid className="alt-inventory" item xs={12} md={6}>
         <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
         Total Inventory

@@ -68,7 +68,7 @@ var RequestFormModal = () => {
     return (
       <div className="modal">
         <div className="modal-content">
-            <div className="modal-body"><h2>Edit Service Log</h2>
+            <div className="modal-body">
               <div className="modal-company-info">
                 <div className="modal-company">{selectedLog.company}</div>
                 <div className="modal-address">{selectedLog.address}</div>

@@ -11,8 +11,10 @@
   justify-content: center;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   z-index: 10;
-  height: auto;
+  height: 100%;
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .modal-content {
@@ -30,7 +32,7 @@
   padding: 10px;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
-  height: auto;
+  height: 100%;
   width: 100%;
   display:flex;
   flex-direction: column;
@@ -52,6 +54,7 @@
   border-top: 1px solid rgb(169,169,169);
   border-bottom: 1px solid rgb(169,169,169);
   justify-content: center;
+  width: 100%;
 }
 
 .modal-edits {
