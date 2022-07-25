@@ -17,8 +17,9 @@ var App = () => {
   let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
 
   useEffect(() => {
+
     axios({
-      baseURL: 'http://localhost:4004',
+      baseURL: process.env.REACT_APP_API_URL,
       url: '/filtershine/api/client',
       method: 'get'
     })
