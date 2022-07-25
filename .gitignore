@@ -26,3 +26,5 @@ yarn-error.log*
 
 .filtershine.pem
 /filtershine.pem
+
+/Dockerfile
