@@ -49,7 +49,7 @@ var Calendar = () => {
         Search
       </Button>
       <FormGroup>
-        <FormControlLabel control={<Checkbox defaultUnchecked onClick={(e) => enableToDate(e)}/>} label="Enable Range" />
+        <FormControlLabel control={<Checkbox onClick={(e) => enableToDate(e)}/>} label="Enable Range" />
       </FormGroup>
     </div>
   );

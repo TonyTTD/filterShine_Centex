@@ -25,7 +25,7 @@ const Inventory = () => {
   const [updateFilterCount, setUpdateFilterCount] = useState({});
 
   useEffect(() => {
-    axios.get('http://44.204.35.57:4004/filtershine/api/filter/')
+    axios.get(`${process.env.REACT_APP_API_URL}/filtershine/api/filter/`)
     .then(data => {setFilters(data.data);})
     .catch(err => {throw err;});
   }, []);
@@ -45,7 +45,7 @@ const Inventory = () => {
   };
 
   const sendRequest = () => {
-    axios.put('http://44.204.35.57:4004/filtershine/api/filter', updateFilterCount)
+    axios.put(`${process.env.REACT_APP_API_URL}/filtershine/api/filter`, updateFilterCount)
     .then(data => {console.log(data);})
     .catch(err => {throw err});
   };
@@ -104,6 +104,7 @@ const Inventory = () => {
     <>
       <div className="inventory" style={{ height: 800, width: '50%', margin:"5%" }}> Total Inventory
         <DataGrid
+          style={{height: "50%"}}
           rows={rows}
           columns={columns}
           pageSize={15}

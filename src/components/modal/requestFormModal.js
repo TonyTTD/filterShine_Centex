@@ -19,11 +19,11 @@ var RequestFormModal = () => {
     if (updateServiceDate && updateCycle) {
       axios.all(
         [
-          axios.put('http://44.204.35.57:4004/filtershine/api/client/update/serviceon', {
+          axios.put(`${process.env.REACT_APP_API_URL}/filtershine/api/client/update/serviceon`, {
             newDate: updateServiceDate,
             clientId: selectedLog.id
           }),
-          axios.put('http://44.204.35.57:4004/filtershine/api/client/update/cycle', {
+          axios.put(`${process.env.REACT_APP_API_URL}/filtershine/api/client/update/cycle`, {
             newCycle: updateCycle,
             clientId: selectedLog.id
           })
@@ -31,14 +31,14 @@ var RequestFormModal = () => {
       .then(data => {console.log(data)})
       .catch(err => {console.log(err)});
     } else if (updateServiceDate) {
-      axios.put('http://44.204.35.57:4004/filtershine/api/client/update/serviceon', {
+      axios.put(`${process.env.REACT_APP_API_URL}/filtershine/api/client/update/serviceon`, {
         newDate: updateServiceDate,
         clientId: selectedLog.id
       })
       .then(data => {console.log(data)})
       .catch(err => {console.log(err)});
     } else if (updateCycle) {
-      axios.put('http://44.204.35.57:4004/filtershine/api/client/update/cycle', {
+      axios.put(`${process.env.REACT_APP_API_URL}/filtershine/api/client/update/cycle`, {
         newCycle: updateCycle,
         clientId: selectedLog.id
       })

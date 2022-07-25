@@ -33,8 +33,7 @@
     "seed": "node ./database/seed.js",
     "start:prod": "serve -s build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [

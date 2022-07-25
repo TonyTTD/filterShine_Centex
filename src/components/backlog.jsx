@@ -66,7 +66,8 @@ var Backlog = () => {
 
   const sortLogsByDate = (logs) => {
     let copied = logs.slice();
-    return copied.sort((a, b) => {return moment(a.serviceon).isBefore(moment(b.serviceon))});
+    return copied.sort((a, b) => {
+      return moment(a.serviceon).format('ddd') - moment(b.serviceon).format('ddd')});
   };
 
   return (
@@ -74,6 +75,7 @@ var Backlog = () => {
       <div className="backlog">
         <div style={{ height: "700px", width: '100%' }}>
           <DataGrid
+            style={{height: "50%"}}
             rows={rows}
             columns={columns}
             pageSize={15}
