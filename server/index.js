@@ -1,5 +1,4 @@
 const express = require('express');
-const router = express.Router();
 const route = require('./routes/index.js');
 require('dotenv').config();
 const cors = require('cors');
@@ -24,4 +23,4 @@ app.listen(port, () => {
 
 app.use('/filtershine/api', route);
 
-module.exports = router;
+module.exports = app;

@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "server-dev": "nodemon ./server/index.js webpack --mode development",
+    "server-dev": "set NODE_ENV=development & nodemon ./server/index.js webpack",
     "server": "node ./server/index.js",
     "seed": "node ./database/seed.js",
     "start:prod": "serve -s build",
