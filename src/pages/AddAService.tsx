@@ -1,54 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { getAllFilterInfo, alertDialog } from '../atom_selector/recoil.js';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import axios from 'axios';
-import moment from 'moment';
-import Grid from '@mui/material/Grid';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import AlertDialog from '../components/modal/confirmationModal.js';
+import React, { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { getAllFilterInfo, alertDialog } from "../atom_selector/recoil.js";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
+import moment from "moment";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AlertDialog from "../components/modal/ConfirmationModal.js";
 
 const AddService = () => {
-  const [newClientInfo, setNewClient] = useState(
-    {
-      company: '',
-      contact: '',
-      phone_number: '',
-      poc_number: '',
-      email: '',
-      address: '',
-      city: '',
-      city_location: '',
-      location: '',
-      st: '',
-      zip: null,
-      filter_id: {},
-      cycle: null,
-      serviceon: '',
-      route: '',
-      title: ''
-    }
-  );
+  const [newClientInfo, setNewClient] = useState({
+    company: "",
+    contact: "",
+    phone_number: "",
+    poc_number: "",
+    email: "",
+    address: "",
+    city: "",
+    city_location: "",
+    location: "",
+    st: "",
+    zip: null,
+    filter_id: {},
+    cycle: null,
+    serviceon: "",
+    route: "",
+    title: "",
+  });
   const [filterList, setFilterList] = useState([]);
   let [allFilters, setFilters] = useRecoilState(getAllFilterInfo);
   let [useAlertDialog, setAlertDialog] = useRecoilState(alertDialog);
   const filterTypes = allFilters;
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/filtershine/api/filter`)
-    .then(data => {setFilters(data.data)})
-    .catch(err => {throw err;});
-
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_API_URL}/filtershine/api/filter`)
+  //     .then((data) => {
+  //       setFilters(data.data);
+  //     })
+  //     .catch((err) => {
+  //       throw err;
+  //     });
+  // }, []);
 
   const handleChange = (value, prop) => {
     let updating = newClientInfo;
@@ -58,12 +60,12 @@ const AddService = () => {
 
   const onSubmit = () => {
     if (!filterList.length) {
-      alert('Please specify filters.');
+      alert("Please specify filters.");
       return;
     }
-    for (let i = 0; i < filterList.length; i ++) {
+    for (let i = 0; i < filterList.length; i++) {
       if (!filterList[i][2]) {
-        alert('Please specify a value greater than 0 for each filter.')
+        alert("Please specify a value greater than 0 for each filter.");
         return;
       }
     }
@@ -71,18 +73,23 @@ const AddService = () => {
   };
 
   const pickFilter = (filter) => {
-    let filterInfo = filter.split(',');
-    setFilterList([...filterList, [filterInfo[0], filterInfo[1]]])
+    let filterInfo = filter.split(",");
+    setFilterList([...filterList, [filterInfo[0], filterInfo[1]]]);
   };
 
   const sendRequest = () => {
     newClientInfo.createdon = moment(new Date()).format("YYYY-MM-DD");
-    axios.post(`${process.env.REACT_APP_API_URL}/filtershine/api/client/new`, {
-      newClientInfo,
-      filterList
-    })
-    .then(data => {console.log(data);})
-    .catch(err => {console.log(err);});
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/filtershine/api/client/new`, {
+        newClientInfo,
+        filterList,
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const deleteFilter = (filterId) => {
@@ -112,12 +119,13 @@ const AddService = () => {
   };
 
   const generateFilterCart = (element) => {
-    return filterList.map(filter => {
+    return filterList.map((filter) => {
       return (
-        <ListItem key={filter[0]}
+        <ListItem
+          key={filter[0]}
           secondaryAction={
             <>
-            <TextField
+              <TextField
                 required
                 id="outlined-required"
                 label="Qty"
@@ -125,20 +133,25 @@ const AddService = () => {
                 defaultValue={0}
                 size="small"
                 type="number"
-                style={{width: "7ch", margin: "5px"}}
+                style={{ width: "7ch", margin: "5px" }}
                 onChange={(e) => updateFilterQty(e.target.value, filter[0])}
               />
-            <IconButton edge="end" aria-label="delete" onClick={() => {deleteFilter(filter[0])}}>
-              <DeleteIcon />
-            </IconButton>
+              <IconButton
+                edge="end"
+                aria-label="delete"
+                onClick={() => {
+                  deleteFilter(filter[0]);
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
             </>
-          } style= {{margin: "2ch"}}
+          }
+          style={{ margin: "2ch" }}
         >
-          <ListItemText
-            primary={`${filter[1]}`}
-          />
+          <ListItemText primary={`${filter[1]}`} />
         </ListItem>
-      )
+      );
     });
   };
 
@@ -147,70 +160,89 @@ const AddService = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}
         noValidate
         autoComplete="off"
         margin="5%"
-      > Client Info:
+      >
+        {" "}
+        Client Info:
         <div className="add-a-service-client">
           <TextField
             required
             id="outlined-required"
             label="Company Name"
             placeholder="Company Name"
-            onChange={(e) => {handleChange(e.target.value, 'company')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "company");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Location Name"
             placeholder="Location Name"
-            onChange={(e) => {handleChange(e.target.value, 'location')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "location");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Location Number"
             placeholder="Location Number"
-            onChange={(e) => {handleChange(e.target.value, 'phone_number')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "phone_number");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Contact"
             placeholder="Point of Contact"
-            onChange={(e) => {handleChange(e.target.value, 'contact')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "contact");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="POC Phone #"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'poc_number')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "poc_number");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="POC Title"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'title')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "title");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="POC Email"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'email')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "email");
+            }}
           />
-        </div> Company Info:
+        </div>{" "}
+        Company Info:
         <div>
           <TextField
             required
             id="outlined-required"
             label="Company Address"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'address')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "address");
+            }}
           />
         </div>
         <div>
@@ -219,58 +251,73 @@ const AddService = () => {
             id="outlined-required"
             label="City"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'city')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "city");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="State"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'st')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "st");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="ZIP"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'zip')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "zip");
+            }}
           />
-        </div> Service Info:
+        </div>{" "}
+        Service Info:
         <div>
-        <TextField
+          <TextField
             required
             id="outlined-required"
             label="City-Location"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'city_location')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "city_location");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Route"
             placeholder="Enter Value"
-            onChange={(e) => {handleChange(e.target.value, 'route')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "route");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Frequency"
             placeholder="Enter cycle"
-            onChange={(e) => {handleChange(e.target.value, 'cycle')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "cycle");
+            }}
           />
           <TextField
             required
             id="outlined-required"
             label="Service On"
             placeholder="Enter date"
-            onChange={(e) => {handleChange(e.target.value, 'serviceon')}}
+            onChange={(e) => {
+              handleChange(e.target.value, "serviceon");
+            }}
           />
         </div>
       </Box>
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, width: '25ch' },
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}
         noValidate
         autoComplete="off"
@@ -281,7 +328,9 @@ const AddService = () => {
             select
             label="Select Filter Type"
             value={filterList}
-            onChange={(e) => {pickFilter(e.target.value)}}
+            onChange={(e) => {
+              pickFilter(e.target.value);
+            }}
             helperText="Please select your filter type"
           >
             {filterTypes.map((option) => (
@@ -293,20 +342,34 @@ const AddService = () => {
         </div>
       </Box>
       <Grid item xs={12} md={6}>
-        <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div" style={{width: "25ch"}}>
+        <Typography
+          sx={{ mt: 4, mb: 2 }}
+          variant="h6"
+          component="div"
+          style={{ width: "25ch" }}
+        >
           Filter Cart: {filterList.length ? "" : "No filters added."}
         </Typography>
-        <List>
-          {generateFilterCart()}
-        </List>
+        <List>{generateFilterCart()}</List>
       </Grid>
       <Stack direction="row" spacing={2}>
-        <Button variant="contained" onClick={() => {onSubmit()}}>Add Service</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            onSubmit();
+          }}
+        >
+          Add Service
+        </Button>
         <Button variant="contained">Cancel</Button>
       </Stack>
-      <AlertDialog sendRequest={() => {sendRequest()}}/>
+      <AlertDialog
+        sendRequest={() => {
+          sendRequest();
+        }}
+      />
     </>
-  )
+  );
 };
 
 export default AddService;

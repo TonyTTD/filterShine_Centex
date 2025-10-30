@@ -1,23 +1,28 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { getAllClients, updateClientServiceDate, updateClientCycle, addNewClient } = require('./controller/clients.js');
+const {
+  getAllClients,
+  updateClientServiceDate,
+  updateClientCycle,
+  addNewClient,
+} = require("./controller/clients.js");
 
-router.get('/', getAllClients);
-router.put('/update/:task', (req, res) => {
+router.get("/", getAllClients);
+
+router.put("/update/:task", (req, res) => {
   try {
-    if (req.params.task === 'serviceon') {
+    if (req.params.task === "serviceon") {
       updateClientServiceDate(req, res);
     }
-    if (req.params.task === 'cycle') {
+    if (req.params.task === "cycle") {
       updateClientCycle(req, res);
     }
-  }
-  catch (err) {
+  } catch (err) {
     res.status(202).json({
-      message: `error: Invalid parameter`
-    })
+      message: `error: Invalid parameter`,
+    });
   }
 });
-router.post('/new', addNewClient);
+router.post("/new", addNewClient);
 
 module.exports = router;
