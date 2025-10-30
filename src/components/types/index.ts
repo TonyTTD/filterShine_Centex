@@ -1,0 +1,20 @@
+export type Client = {
+  id: number;
+  client_id: number;
+  poc: string;
+  route: string;
+  city_location: string;
+  company: string;
+  location: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  phone_number: string;
+  contact: string;
+  title: string;
+  poc_number: string;
+  email: string;
+  serviceOn: Date;
+  cycle: number;
+};

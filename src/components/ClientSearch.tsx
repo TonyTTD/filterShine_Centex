@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import { useRecoilState} from 'recoil';
-import { backlogList } from '../atom_selector/recoil.js';
+import React, { useState } from "react";
+import { useRecoilState } from "recoil";
+import { backlogList } from "../atom_selector/recoil.js";
 
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import TextField from '@mui/material/TextField';
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import TextField from "@mui/material/TextField";
+import { Client } from "./types/index.js";
 
 const ClientSearch = () => {
-  let [useServiceLog, setServiceLog] = useRecoilState(backlogList);
-  let [filterClient, setFilteredClient] = useState([]);
+  const [useServiceLog, setServiceLog] = useState<Client>();
+  const [filterClient, setFilteredClient] = useState([]);
 
   const searchClient = (search) => {
     if (search.length >= 2) {
@@ -30,7 +31,7 @@ const ClientSearch = () => {
   };
 
   return (
-    <div style={{width: "100%", "justify-items": "center", margin: "3%"}}>
+    <div style={{ width: "100%", "justify-items": "center", margin: "3%" }}>
       <TextField
         required
         id="outlined-required"
@@ -39,11 +40,11 @@ const ClientSearch = () => {
         size="medium"
         onChange={(e) => searchClient(e.target.value)}
       />
-      <div style={{margin: '5ch'}}>
-        {filterClient.map(client => {
+      <div style={{ margin: "5ch" }}>
+        {filterClient.map((client) => {
           return (
             <>
-              <Accordion style={{margin: '1ch'}}>
+              <Accordion style={{ margin: "1ch" }}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
@@ -52,17 +53,15 @@ const ClientSearch = () => {
                   <Typography>{client.location}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    Add client info for updating
-                  </Typography>
+                  <Typography>Add client info for updating</Typography>
                 </AccordionDetails>
               </Accordion>
             </>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 };
 
 export default ClientSearch;
